@@ -2,7 +2,7 @@ import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtAvatar, AtButton, AtMessage, AtDivider } from 'taro-ui'
-import {getUserData} from '@apis/user'
+import { getUserData } from '@apis/user'
 import Card from '@components/Card'
 import TabsBar from '@components/TabsBar'
 import './index.less'
@@ -31,9 +31,19 @@ class Index extends Component {
     navigationBarTitleText: '我们的家'
   }
   componentDidMount() {
-    getUserData({id:444}).then(data=>{
+    getUserData({ id: 444 }, { loading: true }).then((data) => {
       console.info(data)
     })
+    // Taro.showToast({
+    //   title: '成功',
+    //   icon: 'error',
+    //   duration: 2000
+    // })
+    // Taro.openLocation({
+    //   latitude:30,
+    //   longitude:40,
+    //   scale: 18
+    // })
   }
 
   componentWillUnmount() { }
@@ -72,7 +82,7 @@ class Index extends Component {
     Taro.makePhoneCall({ phoneNumber })
   }
 
-  handleFeedback=()=>{
+  handleFeedback = () => {
     Taro.navigateTo({
       url: `/pages/Call/Feedback/index?itemId=6666777`
     })

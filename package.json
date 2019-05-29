@@ -2,7 +2,7 @@
   "name": "taro",
   "version": "1.0.0",
   "private": true,
-  "description": "微信小程序",
+  "description": "壹酮说小程序",
   "main": "index.js",
   "scripts": {
     "build:weapp": "taro build --type weapp",
