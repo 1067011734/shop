@@ -28,9 +28,9 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/Fetch/index',
       'pages/Call/index',
       'pages/Call/Feedback/index',
-      'pages/Fetch/index',
       'pages/Welcome/index',
       'pages/index/index'
     ],
