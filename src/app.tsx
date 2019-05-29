@@ -30,7 +30,7 @@ class App extends Component {
     pages: [
       'pages/Call/index',
       'pages/Call/Feedback/index',
-      'pages/Love/index',
+      'pages/Fetch/index',
       'pages/Welcome/index',
       'pages/index/index'
     ],
@@ -41,28 +41,28 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     },
     tabBar: {
-      color: "#374655",
-      selectedColor: "#b4282d",
+      color: "#999999",
+      selectedColor: "#1E1E1E",
       backgroundColor: "#fff",
       borderStyle: 'black',
       list: [
         {
           pagePath: "pages/Welcome/index",
-          iconPath: "./images/tabbar/welcome.png",
-          selectedIconPath: "./images/tabbar/welcome-active.png",
-          text: "介绍"
+          iconPath: "./images/tabbar/order.png",
+          selectedIconPath: "./images/tabbar/order.png",
+          text: "点餐"
         },
         {
-          pagePath: "pages/Love/index",
-          iconPath: "./images/tabbar/love.png",
-          selectedIconPath: "./images/tabbar/love-active.png",
-          text: "心动了"
+          pagePath: "pages/Fetch/index",
+          iconPath: "./images/tabbar/fetch.png",
+          selectedIconPath: "./images/tabbar/fetch.png",
+          text: "取餐"
         },
         {
           pagePath: "pages/Call/index",
-          iconPath: "./images/tabbar/call.png",
-          selectedIconPath: "./images/tabbar/call-active.png",
-          text: "联系我们"
+          iconPath: "./images/tabbar/my.png",
+          selectedIconPath: "./images/tabbar/my.png",
+          text: "我的"
         },
       ]
     }
