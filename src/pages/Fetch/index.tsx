@@ -48,12 +48,10 @@ class Index extends Component {
             <Card
               dataSource={item}
               key={item.id}
-              // operation={<XButton>取餐</XButton>}
+              operation="取餐"
             />
           )
         }
-        <XButton>取餐</XButton>
-        取餐
       </View>
     )
   }

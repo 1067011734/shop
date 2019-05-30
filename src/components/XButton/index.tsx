@@ -25,7 +25,7 @@ export interface buttonProps {
     });
 
     return (
-      <Button className={className} size="mini">{this.props.children}</Button>
+      <Button className={className}>{this.props.children}</Button>
     )
   }
 }

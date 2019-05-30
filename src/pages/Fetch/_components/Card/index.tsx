@@ -1,6 +1,7 @@
 import { ComponentType } from 'react'
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
+import XButton from '@components/XButton'
 import './index.less'
 
 const prefixCls = 'fetch-food-card';
@@ -16,7 +17,8 @@ class Index extends Component<cardProps> {
 
   static defaultProps = {
     title: "",
-    dataSource: {}
+    dataSource: {},
+    operation: ""
   }
 
   state = {}
@@ -49,7 +51,7 @@ class Index extends Component<cardProps> {
               </View>
             </View>
             <View className={`${prefixCls}-main-body-footer`}>
-            <View className={`${prefixCls}-main-body-footer-description`}>
+              <View className={`${prefixCls}-main-body-footer-description`}>
                 {dataSource.description}
               </View>
               <View className={`${prefixCls}-main-body-footer-price`}>
@@ -59,7 +61,7 @@ class Index extends Component<cardProps> {
           </View>
         </View>
         <View className={`${prefixCls}-footer`}>
-          {operation}
+          <XButton>{operation}</XButton>
         </View>
       </View>
     )

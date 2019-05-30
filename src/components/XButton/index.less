@@ -2,12 +2,16 @@
 @prefix-cls: ~"components-button";
 
 .@{prefix-cls} {
-  background: @color-info;
+  background: @color-primary;
   color: #fff;
   width: auto;
-  // display: inline-block;
+  display: inline-block;
   border-radius: @border-radius-base;
-  // padding: 0rpx 34rpx;
-  // line-height: 59rpx;
-  // font-size: 22rpx;
+  padding: 0rpx 34rpx;
+  line-height: 55rpx;
+  font-size: 22rpx;
+  background-image: linear-gradient(-90deg, #F5BE9C 0%,#F8D0B7 100%);
+  &::after{
+    border: none;
+  }
 }

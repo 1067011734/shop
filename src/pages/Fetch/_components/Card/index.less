@@ -5,7 +5,7 @@
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 20px 24px 20px;
   border-radius: @border-radius-base;
   box-shadow: -4px 0 5px 0 rgba(0, 0, 0, 0.04);
   margin-bottom: 20px;
@@ -39,6 +39,7 @@
       &-content{
         display: flex;
         flex-direction: row;
+        align-items: center;
         margin-bottom: 42px;
         font-size: 28px;
         &-name{
@@ -46,6 +47,7 @@
         }
         &-count{
           color: @font-color-thin;
+          font-size: 24px;
         }
       }
       &-footer{
@@ -60,5 +62,8 @@
         }
       }
     }
+  }
+  &-footer{
+    text-align: right;
   }
 }
