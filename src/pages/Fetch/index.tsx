@@ -1,7 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import XButton from '@components/XButton'
 import Card from './_components/Card';
 import './index.less'
 
@@ -43,15 +42,20 @@ class Index extends Component {
     const { list } = this.state
     return (
       <View className='page page-fetch'>
-        {
-          list.map(item =>
-            <Card
-              dataSource={item}
-              key={item.id}
-              operation="取餐"
-            />
-          )
-        }
+        <View className="page-content">
+          {
+            list.map(item =>
+              <Card
+                dataSource={item}
+                key={item.id}
+                operation="取餐"
+              />
+            )
+          }
+        </View>
+        <View className="page-footer">
+          历史订单 >
+        </View>
       </View>
     )
   }

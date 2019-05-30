@@ -6,14 +6,14 @@ import './index.less'
 
 const prefixCls = 'fetch-food-card';
 
-export interface cardProps {
+export interface CardProps {
   // 数据源
-  dataSource: any;
+  dataSource?: any;
   // 操作
   operation: any;
 }
 
-class Index extends Component<cardProps> {
+class Index extends Component<CardProps> {
 
   static defaultProps = {
     title: "",
