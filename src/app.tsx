@@ -29,10 +29,8 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/Fetch/index',
-      'pages/Call/index',
-      'pages/Call/Feedback/index',
-      'pages/Welcome/index',
-      'pages/index/index'
+      'pages/Order/index',
+      'pages/My/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -47,7 +45,7 @@ class App extends Component {
       borderStyle: 'black',
       list: [
         {
-          pagePath: "pages/Welcome/index",
+          pagePath: "pages/Order/index",
           iconPath: "./images/tabbar/order.png",
           selectedIconPath: "./images/tabbar/order-selected.png",
           text: "点餐"
@@ -59,7 +57,7 @@ class App extends Component {
           text: "取餐"
         },
         {
-          pagePath: "pages/Call/index",
+          pagePath: "pages/My/index",
           iconPath: "./images/tabbar/my.png",
           selectedIconPath: "./images/tabbar/my-selected.png",
           text: "我的"
