@@ -8,6 +8,8 @@ const prefixCls = 'fetch-food-card';
 export interface cardProps {
   // 数据源
   dataSource: any;
+  // 操作
+  operation: any;
 }
 
 class Index extends Component<cardProps> {
@@ -23,7 +25,7 @@ class Index extends Component<cardProps> {
   }
 
   render() {
-    const { dataSource } = this.props
+    const { dataSource, operation } = this.props
 
     return (
       <View className={prefixCls}>
@@ -36,7 +38,7 @@ class Index extends Component<cardProps> {
           </View>
         </View>
         <View className={`${prefixCls}-main`}>
-          <Image src={dataSource.src} mode="aspectFit" />
+          <Image src={dataSource.src || "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559141090669&di=dac14b86f6855b4f3453f03f773a6c3b&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201509%2F28%2F20150928012450_HzGKk.jpeg"} mode="aspectFit" />
           <View className={`${prefixCls}-main-body`}>
             <View className={`${prefixCls}-main-body-content`}>
               <View className={`${prefixCls}-main-body-content-name`}>
@@ -51,10 +53,13 @@ class Index extends Component<cardProps> {
                 {dataSource.description}
               </View>
               <View className={`${prefixCls}-main-body-footer-price`}>
-                ￥{dataSource.price}
+                ￥ {dataSource.price}
               </View>
             </View>
           </View>
+        </View>
+        <View className={`${prefixCls}-footer`}>
+          {operation}
         </View>
       </View>
     )

@@ -1,6 +1,7 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import XButton from '@components/XButton'
 import Card from './_components/Card';
 import './index.less'
 
@@ -8,8 +9,8 @@ class Index extends Component {
 
   state = {
     list: [
-      { title:'正在配送',name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 1 },
-      { title:'制作中',name: "蓝玫瑰红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 2 },
+      { title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 1 },
+      { title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 2 },
     ]
   }
 
@@ -43,8 +44,15 @@ class Index extends Component {
     return (
       <View className='page page-fetch'>
         {
-          list.map(item => <Card dataSource={item} key={item.id} />)
+          list.map(item =>
+            <Card
+              dataSource={item}
+              key={item.id}
+              // operation={<XButton>取餐</XButton>}
+            />
+          )
         }
+        <XButton>取餐</XButton>
         取餐
       </View>
     )
