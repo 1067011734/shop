@@ -1,4 +1,3 @@
-import { ComponentType } from 'react'
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import XButton from '@components/XButton'
@@ -68,4 +67,4 @@ class Index extends Component<CardProps> {
   }
 }
 
-export default Index as ComponentType
+export default Index
