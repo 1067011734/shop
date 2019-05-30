@@ -49,19 +49,19 @@ class App extends Component {
         {
           pagePath: "pages/Welcome/index",
           iconPath: "./images/tabbar/order.png",
-          selectedIconPath: "./images/tabbar/order.png",
+          selectedIconPath: "./images/tabbar/order-selected.png",
           text: "点餐"
         },
         {
           pagePath: "pages/Fetch/index",
           iconPath: "./images/tabbar/fetch.png",
-          selectedIconPath: "./images/tabbar/fetch.png",
+          selectedIconPath: "./images/tabbar/fetch-selected.png",
           text: "取餐"
         },
         {
           pagePath: "pages/Call/index",
           iconPath: "./images/tabbar/my.png",
-          selectedIconPath: "./images/tabbar/my.png",
+          selectedIconPath: "./images/tabbar/my-selected.png",
           text: "我的"
         },
       ]
