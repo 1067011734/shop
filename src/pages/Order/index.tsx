@@ -46,12 +46,17 @@ class Index extends Component {
     const { list } = this.state
     return (
       <View className='page page-order'>
-        <View className="page-content">
-          点餐233
+        <View className="page-header">
+          <View className="page-header-content">
+          星光大道店 >
+       </View>
           <XSwitch
             dataSource={[{ id: 1, value: '外卖' }, { id: 2, value: '自取' }]}
             onClick={this.handleXSwitchClick}
           />
+        </View>
+        <View className="page-content">
+          点餐233
         </View>
         <View className="page-footer">
           {/* 历史订单 > */}
