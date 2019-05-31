@@ -48,8 +48,8 @@ class Index extends Component {
       <View className='page page-order'>
         <View className="page-header">
           <View className="page-header-content">
-          星光大道店 >
-       </View>
+            星光大道店 >
+          </View>
           <XSwitch
             dataSource={[{ id: 1, value: '外卖' }, { id: 2, value: '自取' }]}
             onClick={this.handleXSwitchClick}
