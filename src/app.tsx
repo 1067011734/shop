@@ -28,8 +28,8 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/Fetch/index',
       'pages/Order/index',
+      'pages/Fetch/index',
       'pages/My/index',
     ],
     window: {

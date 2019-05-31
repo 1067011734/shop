@@ -1,6 +1,7 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import XSwitch from '@components/XSwitch'
 import './index.less'
 
 class Index extends Component {
@@ -37,12 +38,20 @@ class Index extends Component {
 
   componentDidHide() { }
 
+  handleXSwitchClick = (id) => {
+    console.info(id)
+  }
+
   render() {
     const { list } = this.state
     return (
       <View className='page page-order'>
         <View className="page-content">
-          点餐
+          点餐233
+          <XSwitch
+            dataSource={[{ id: 1, value: '外卖' }, { id: 2, value: '自取' }]}
+            onClick={this.handleXSwitchClick}
+          />
         </View>
         <View className="page-footer">
           {/* 历史订单 > */}
