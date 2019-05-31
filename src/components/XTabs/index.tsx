@@ -16,8 +16,8 @@ class App extends Component<XTabsProps> {
   }
 
   /**
-   * 切换选项
-   * @param key 切换的选项标示
+   * 切换开关
+   * @param key 切换的开关的标识
   */
   handleToggle = (key) => {
     const { onClick } = this.props

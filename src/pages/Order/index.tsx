@@ -22,7 +22,7 @@ class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: ''
+    // navigationBarTitleText: ''
   }
 
   componentWillMount() { }
@@ -39,7 +39,19 @@ class Index extends Component {
 
   componentDidHide() { }
 
+  /**
+   * 切换开关
+   * @param key 切换的开关的标识
+  */
   handleXSwitchClick = (id) => {
+    console.info(id)
+  }
+
+  /**
+     * 切换标签页
+     * @param key 切换的开关的标识
+    */
+  handleXTabsClick = (id) => {
     console.info(id)
   }
 
@@ -59,7 +71,7 @@ class Index extends Component {
         <View className="page-content">
           <XTabs
             dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
-            onClick={this.handleXSwitchClick}
+            onClick={this.handleXTabsClick}
           />
           点餐233
         </View>
