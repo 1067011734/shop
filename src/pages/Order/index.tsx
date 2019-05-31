@@ -2,6 +2,7 @@ import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import XSwitch from '@components/XSwitch'
+import XTabs from '@components/XTabs'
 import './index.less'
 
 class Index extends Component {
@@ -56,6 +57,10 @@ class Index extends Component {
           />
         </View>
         <View className="page-content">
+          <XTabs
+            dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
+            onClick={this.handleXSwitchClick}
+          />
           点餐233
         </View>
         <View className="page-footer">
