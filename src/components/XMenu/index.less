@@ -1,0 +1,30 @@
+@import "../../style/common.less";
+@prefix-cls: ~"components-menu";
+
+.@{prefix-cls} {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  font-size: 26px;
+  color: @font-color-thin;
+  &-sider {
+    width: 160px;
+    color: #888888;
+    font-size: 26px;
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    &-item{
+      padding: 53px 23px;
+      &-active{
+        color: #222222;
+        background-color: #ffffff;
+      }
+    }
+  }
+  &-content {
+    flex: 1;
+    background: #ffffff;
+    padding-left: 20px;
+  }
+}

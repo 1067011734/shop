@@ -3,14 +3,22 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import XSwitch from '@components/XSwitch'
 import XTabs from '@components/XTabs'
+import XMenu from '@components/XMenu'
 import './index.less'
 
 class Index extends Component {
 
   state = {
-    list: [
-      { title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 1 },
-      { title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 2 },
+    siderData: [
+       { id: 1, value: '今日推荐' },
+       { id: 2, value: 'YITO森林' },
+       { id: 3, value: '水母家族' },
+       { id: 4, value: '今日推荐' },
+       { id: 5, value: 'YITO森林' },
+       { id: 6, value: '水母家族' },
+       { id: 7, value: '今日推荐' },
+       { id: 8, value: 'YITO森林' },
+       { id: 9, value: '水母家族' },
     ]
   }
 
@@ -56,7 +64,7 @@ class Index extends Component {
   }
 
   render() {
-    const { list } = this.state
+    const { siderData } = this.state
     return (
       <View className='page page-order'>
         <View className="page-header">
@@ -73,7 +81,11 @@ class Index extends Component {
             dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
             onClick={this.handleXTabsClick}
           />
-          点餐233
+          <XMenu
+            siderData={siderData}
+            dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
+            onClick={this.handleXTabsClick}
+          />
         </View>
         <View className="page-footer">
           {/* 历史订单 > */}
