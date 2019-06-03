@@ -61,7 +61,9 @@ class App extends Component<XMenuProps> {
         </ScrollView>
         <ScrollView className={`${prefixCls}-content`}>
           {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
-          <XSwiper dataSource={swiperSrc} />
+          <View className={`${prefixCls}-content-swiper`}>
+            <XSwiper dataSource={swiperSrc} />
+          </View>
         </ScrollView>
       </View>
     )
