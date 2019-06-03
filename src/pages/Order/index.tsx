@@ -10,15 +10,20 @@ class Index extends Component {
 
   state = {
     siderData: [
-       { id: 1, value: '今4444日推荐' },
-       { id: 2, value: 'YITO森林' },
-       { id: 3, value: '水母家族' },
-       { id: 4, value: '今日推荐' },
-       { id: 5, value: 'YITO森林' },
-       { id: 6, value: '水母家族' },
-       { id: 7, value: '今日推荐' },
-       { id: 8, value: 'YITO森林' },
-       { id: 9, value: '水母家族' },
+      { id: 1, value: '今4444日推荐' },
+      { id: 2, value: 'YITO森林' },
+      { id: 3, value: '水母家族' },
+      { id: 4, value: '今日推荐' },
+      { id: 5, value: 'YITO森林' },
+      { id: 6, value: '水母家族' },
+      { id: 7, value: '今日推荐' },
+      { id: 8, value: 'YITO森林' },
+      { id: 9, value: '水母家族' },
+    ],
+    swiperSrc: [
+      'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559306415426&di=45afbd8b08abe9548dd8763fcd231bfa&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201801%2F16%2F001613ga63zcpop3pomkkb.jpg',
+      'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg',
+      'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg'
     ]
   }
 
@@ -64,7 +69,7 @@ class Index extends Component {
   }
 
   render() {
-    const { siderData } = this.state
+    const { siderData, swiperSrc } = this.state
     return (
       <View className='page page-order'>
         <View className="page-header">
@@ -82,9 +87,10 @@ class Index extends Component {
             onClick={this.handleXTabsClick}
           />
           <XMenu
-            height ={'calc(100vh - 92rpx - 56rpx)'}
+            height={'calc(100vh - 92rpx - 56rpx)'}
             siderData={siderData}
             logoSrc={"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559306415426&di=45afbd8b08abe9548dd8763fcd231bfa&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201801%2F16%2F001613ga63zcpop3pomkkb.jpg"}
+            swiperSrc={swiperSrc}
             dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
             onClick={this.handleXTabsClick}
           />

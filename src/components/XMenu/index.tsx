@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Image } from '@tarojs/components'
+import { View, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
+import XSwiper from '@components/XSwiper';
 import './index.less';
 
 const prefixCls = 'components-menu';
@@ -12,6 +13,8 @@ export interface XMenuProps {
   onClick: Function;
   // 高度
   height?: string;
+  // 轮播图片地址
+  swiperSrc?: Array<any>;
 }
 
 class App extends Component<XMenuProps> {
@@ -29,11 +32,11 @@ class App extends Component<XMenuProps> {
   }
 
   render() {
-    const { dataSource, siderData, logoSrc, height } = this.props;
+    const { dataSource, siderData, logoSrc, height, swiperSrc } = this.props;
     const { actvieKey } = this.state;
 
     const scrollStyle = {
-      height: height  || 'auto'
+      height: height || 'auto'
     }
     console.info(siderData, logoSrc)
 
@@ -58,6 +61,7 @@ class App extends Component<XMenuProps> {
         </ScrollView>
         <ScrollView className={`${prefixCls}-content`}>
           {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
+          <XSwiper dataSource={swiperSrc} />
         </ScrollView>
       </View>
     )
