@@ -57,7 +57,7 @@ class App extends Component<XMenuProps> {
           }
         </ScrollView>
         <ScrollView className={`${prefixCls}-content`}>
-          {logoSrc ? <Image src={logoSrc} mode="aspectFit" /> : ''}
+          {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
         </ScrollView>
       </View>
     )
