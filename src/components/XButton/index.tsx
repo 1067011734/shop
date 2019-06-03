@@ -7,7 +7,7 @@ const prefixCls = 'components-button';
 
 export interface buttonProps {
   // 类型
-  type: String,
+  type?: String,
   // 子元素
   children: any;
 }

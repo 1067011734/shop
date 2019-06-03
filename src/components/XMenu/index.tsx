@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { View, ScrollView, Image } from '@tarojs/components'
 import XSwiper from '@components/XSwiper';
 import hotSrc from '@images/hot.png'
+import Card from './_components/Card';
 import './index.less';
 
 const prefixCls = 'components-menu';
@@ -60,16 +61,30 @@ class App extends Component<XMenuProps> {
             ))
           }
         </ScrollView>
-        <ScrollView className={`${prefixCls}-content`}>
-          {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
+        <ScrollView
+          className={`${prefixCls}-content`}
+          style={scrollStyle}
+          scrollY
+        >
+          <View className={`${prefixCls}-content-banner`}>
+            {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
+          </View>
           <View className={`${prefixCls}-content-swiper`}>
             <XSwiper dataSource={swiperSrc} />
           </View>
           <View className={`${prefixCls}-content-list`}>
             <View className={`${prefixCls}-content-list-title`}>
-              今日推荐<Image className='icon-hot' src={hotSrc}/>
-          </View>
-            4444
+              今日推荐<Image className='icon-hot' src={hotSrc} />
+            </View>
+            {
+              dataSource && dataSource.map(item =>
+                <Card
+                  dataSource={item}
+                  key={item.id}
+                  operation="取餐"
+                />
+              )
+            }
           </View>
         </ScrollView>
       </View>
