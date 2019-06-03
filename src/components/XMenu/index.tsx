@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
 import XSwiper from '@components/XSwiper';
+import hotSrc from '@images/hot.png'
 import './index.less';
 
 const prefixCls = 'components-menu';
@@ -63,6 +64,12 @@ class App extends Component<XMenuProps> {
           {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
           <View className={`${prefixCls}-content-swiper`}>
             <XSwiper dataSource={swiperSrc} />
+          </View>
+          <View className={`${prefixCls}-content-list`}>
+            <View className={`${prefixCls}-content-list-title`}>
+              今日推荐<Image className='icon-hot' src={hotSrc}/>
+          </View>
+            4444
           </View>
         </ScrollView>
       </View>

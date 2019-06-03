@@ -6,7 +6,7 @@ const prefixCls = 'components-swiper';
 
 export interface XSwiperProps {
   // 数据源
-  dataSource?: Array<any>,
+  dataSource?: Array<any>;
 }
 
 class App extends Component<XSwiperProps> {
@@ -30,18 +30,15 @@ class App extends Component<XSwiperProps> {
       <View className={prefixCls}>
         <Swiper
           circular
-          // indicatorDots
-          // indicatorColor="#ffffff"
           onchange={this.handleChange}
-        // autoplay
+          autoplay
         >
           {
             dataSource && dataSource.map((src, index) => (
               <SwiperItem
-                // className={`${prefixCls}-item`}
                 key={index}
               >
-                <Image src={src} mode="aspectFill" />
+                <Image src={src} mode="scaleToFill" />
               </SwiperItem>
             ))
           }

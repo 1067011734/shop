@@ -29,6 +29,7 @@
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
       "@apis/*": ["src/apis/*"],
+      "@images/*": ["src/images/*"],
     },
   },
   "exclude": [

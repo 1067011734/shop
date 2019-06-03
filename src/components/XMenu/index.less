@@ -19,7 +19,7 @@
     &-item {
       padding: 53px 23px;
       &-active {
-        color: #222222;
+        color: @font-color-2;
         background-color: #ffffff;
       }
     }
@@ -29,15 +29,31 @@
     flex: 1;
     flex-direction: column;
     background: #ffffff;
-    padding:0 20px;
+    padding: 0 20px;
     image {
       width: 550px;
       height: 280px;
       opacity: 0.97;
     }
-    &-swiper{
+    &-swiper {
       margin-top: 16px;
       margin-bottom: 16px;
+    }
+    &-list {
+      &-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 22px;
+        padding-top: 19px;
+        padding-bottom: 22px;
+        color: @font-color-2;
+        .icon-hot {
+          width: 13px;
+          height: 15px;
+          margin-left: 5px;
+        }
+      }
     }
   }
 }

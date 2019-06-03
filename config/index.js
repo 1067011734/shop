@@ -101,6 +101,7 @@ const config = {
     '@components': path.resolve(__dirname, '..', 'src/components'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
     '@apis': path.resolve(__dirname, '..', 'src/apis'),
+    '@images': path.resolve(__dirname, '..', 'src/images'),
   }
 }
 
