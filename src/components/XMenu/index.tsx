@@ -1,14 +1,17 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, ScrollView, Image } from '@tarojs/components'
 import './index.less';
 
 const prefixCls = 'components-menu';
 
 export interface XMenuProps {
   // 数据源
-  siderData?: Array<any>,
-  dataSource: any,
-  onClick: Function
+  siderData?: Array<any>;
+  logoSrc?: string;
+  dataSource: any;
+  onClick: Function;
+  // 高度
+  height?: string;
 }
 
 class App extends Component<XMenuProps> {
@@ -26,32 +29,36 @@ class App extends Component<XMenuProps> {
   }
 
   render() {
-    const { dataSource, siderData } = this.props;
+    const { dataSource, siderData, logoSrc, height } = this.props;
     const { actvieKey } = this.state;
+
+    const scrollStyle = {
+      height: height  || 'auto'
+    }
+    console.info(siderData, logoSrc)
 
     return (
       <View className={prefixCls}>
-        <View
+        <ScrollView
+          style={scrollStyle}
+          scrollY
           className={`${prefixCls}-sider`}
         >
           {
             siderData && siderData.map(item => (
               <View
-                className={`${prefixCls}-sider-item ${item.id===actvieKey?`${prefixCls}-sider-item-active`:''}`}
-                onClick={()=>{this.handleToggle(item.id)}}
+                className={`${prefixCls}-sider-item ${item.id === actvieKey ? `${prefixCls}-sider-item-active` : ''}`}
+                onClick={() => { this.handleToggle(item.id) }}
                 key={item.id}
               >
                 {item.value}
               </View>
             ))
           }
-        </View>
-        <View
-          className={`${prefixCls}-content`}
-          onClick={() => { this.handleToggle(2) }}
-        >
-          {dataSource[1] && dataSource[1].value}
-        </View>
+        </ScrollView>
+        <ScrollView className={`${prefixCls}-content`}>
+          {logoSrc ? <Image src={logoSrc} mode="aspectFit" /> : ''}
+        </ScrollView>
       </View>
     )
   }

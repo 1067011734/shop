@@ -10,7 +10,7 @@ class Index extends Component {
 
   state = {
     siderData: [
-       { id: 1, value: '今日推荐' },
+       { id: 1, value: '今4444日推荐' },
        { id: 2, value: 'YITO森林' },
        { id: 3, value: '水母家族' },
        { id: 4, value: '今日推荐' },
@@ -83,6 +83,7 @@ class Index extends Component {
           />
           <XMenu
             siderData={siderData}
+            logoSrc={"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559306415426&di=45afbd8b08abe9548dd8763fcd231bfa&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201801%2F16%2F001613ga63zcpop3pomkkb.jpg"}
             dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
             onClick={this.handleXTabsClick}
           />

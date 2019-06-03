@@ -3,12 +3,14 @@
 
 .@{prefix-cls} {
   display: flex;
+  flex: 1;
   flex-direction: row;
   background-color: #ffffff;
   font-size: 26px;
   color: @font-color-thin;
   &-sider {
-    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
     color: #888888;
     font-size: 26px;
     background-color: #f6f6f6;
@@ -23,8 +25,13 @@
     }
   }
   &-content {
+    display: flex;
     flex: 1;
+    flex-direction: column;
     background: #ffffff;
     padding-left: 20px;
+    img{
+      height: 280px;
+    }
   }
 }
