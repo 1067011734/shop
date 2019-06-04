@@ -67,25 +67,27 @@ class App extends Component<XMenuProps> {
           style={scrollStyle}
           scrollY
         >
-          <View className={`${prefixCls}-content-banner`}>
-            {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
-          </View>
-          <View className={`${prefixCls}-content-swiper`}>
-            <XSwiper dataSource={swiperSrc} />
-          </View>
-          <View className={`${prefixCls}-content-list`}>
-            <View className={`${prefixCls}-content-list-title`}>
-              今日推荐<XIcon type='hot' size={[13,15]} gutter/>
+          <View className={`${prefixCls}-content-inner`}>
+            <View className={`${prefixCls}-content-banner`}>
+              {logoSrc ? <Image src={logoSrc} mode="scaleToFill" /> : ''}
             </View>
-            {
-              dataSource && dataSource.map(item =>
-                <Card
-                  dataSource={item}
-                  key={item.id}
-                  operation="取餐"
-                />
-              )
-            }
+            <View className={`${prefixCls}-content-swiper`}>
+              <XSwiper dataSource={swiperSrc} />
+            </View>
+            <View className={`${prefixCls}-content-list`}>
+              <View className={`${prefixCls}-content-list-title`}>
+                今日推荐<XIcon type='hot' size={[13, 15]} gutter />
+              </View>
+              {
+                dataSource && dataSource.map(item =>
+                  <Card
+                    dataSource={item}
+                    key={item.id}
+                    operation="取餐"
+                  />
+                )
+              }
+            </View>
           </View>
         </ScrollView>
       </View>
