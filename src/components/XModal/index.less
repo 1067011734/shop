@@ -1,0 +1,34 @@
+@import "../../style/common.less";
+@prefix-cls: ~"components-modal";
+
+.@{prefix-cls} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &-content {
+    background: #ffffff;
+    border-radius: 12rpx;
+    opacity: 1;
+    z-index: 2;
+    padding: 30rpx;
+  }
+  &-hidden {
+    visibility: hidden;
+  }
+  &-mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.45;
+  }
+}

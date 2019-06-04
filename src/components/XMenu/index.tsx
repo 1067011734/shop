@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Image } from '@tarojs/components'
 import XSwiper from '@components/XSwiper';
 import XIcon from '@components/XIcon';
-import hotSrc from '@images/hot.png'
+import XModal from '@components/XModal';
 import Card from './_components/Card';
 import './index.less';
 
@@ -90,6 +90,7 @@ class App extends Component<XMenuProps> {
             </View>
           </View>
         </ScrollView>
+        <XModal></XModal>
       </View>
     )
   }
