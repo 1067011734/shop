@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import XButton from '@components/XButton'
+import XRolling from '@components/XRolling'
 import './index.less'
 
 const prefixCls = 'components-menu-card';
@@ -25,6 +25,10 @@ class Index extends Component<CardProps> {
   componentDidMount() {
   }
 
+  handleRolling = (count) =>{
+    console.info(count)
+  }
+
   render() {
     const { dataSource, operation } = this.props
 
@@ -45,7 +49,7 @@ class Index extends Component<CardProps> {
                 ￥ {dataSource.price}
               </View>
               <View className={`${prefixCls}-body-footer-plus`}>
-
+              <XRolling isComplete={false} onChange={this.handleRolling}/>
               </View>
             </View>
           </View>

@@ -1,12 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Image } from '@tarojs/components'
 import hotSrc from '@images/hot.png'
+import plusSrc from '@images/plus.png'
+import reduceSrc from '@images/reduce.png'
 import './index.less';
 
 const prefixCls = 'components-icon';
 
 const typeList = {
   hot: hotSrc,
+  plus: plusSrc,
+  reduce: reduceSrc
 }
 
 export interface XSwiperProps {
