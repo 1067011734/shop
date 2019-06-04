@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Image } from '@tarojs/components'
 import XSwiper from '@components/XSwiper';
+import XIcon from '@components/XIcon';
 import hotSrc from '@images/hot.png'
 import Card from './_components/Card';
 import './index.less';
@@ -74,7 +75,7 @@ class App extends Component<XMenuProps> {
           </View>
           <View className={`${prefixCls}-content-list`}>
             <View className={`${prefixCls}-content-list-title`}>
-              今日推荐<Image className='icon-hot' src={hotSrc} />
+              今日推荐<XIcon type='hot' size={[13,15]} gutter/>
             </View>
             {
               dataSource && dataSource.map(item =>
