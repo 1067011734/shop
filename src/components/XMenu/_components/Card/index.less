@@ -2,22 +2,23 @@
 @prefix-cls: ~"components-menu-card";
 
 .@{prefix-cls} {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 79rpx;
   &-header{
     image{
       width: 146rpx;
       height: 146rpx;
     }
   }
-  background: #ffffff;
-  display: flex;
-  flex-direction: row;
   &-body{
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-top: 13rpx;
-    margin-bottom: 39rpx;
-    margin-left: 30rpx;
+    // margin-top: 13rpx;
+    margin-left: 29rpx;
     &-name{
       font-size: 26rpx;
       color: @font-color-2;
@@ -27,6 +28,17 @@
       flex: 1;
       color: @font-color-thin;
       font-size: 22rpx;
+      margin-bottom: 7rpx;
+    }
+    &-footer{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &-price{
+        flex: 1;
+        font-size: 30px;
+        color: @font-color-2;
+      }
     }
   }
 }
