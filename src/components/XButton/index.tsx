@@ -12,6 +12,8 @@ export interface buttonProps {
   children: any;
   // 将按钮宽度调整为其父宽度的选项
   block?: Boolean
+  // 尺寸大小
+  size?: string
 }
 
  class App extends Component<buttonProps, {}> {
@@ -20,12 +22,12 @@ export interface buttonProps {
   }
 
   render() {
-    const { type, block } = this.props;
-   console.info(this.props)
+    const { type, block, size } = this.props;
+
     const className = classNames({
       [`${prefixCls}`]: true,
-      [`${prefixCls}-block`]: true,
-      [`${prefixCls}-size-middle`]: true,
+      [`${prefixCls}-block`]: block,
+      [`${prefixCls}-size-middle`]: size==='middle',
       // [`${prefixCls}-block`]: Boolean(block),
     });
 

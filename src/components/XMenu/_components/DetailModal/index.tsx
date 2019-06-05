@@ -121,7 +121,7 @@ class Index extends Component<CardProps> {
               </View>
             </View>
             <View className={`${prefixCls}-footer-btn`}>
-              <XButton>加入购物车</XButton>
+              <XButton block size="middle">加入购物车</XButton>
             </View>
           </View>
         </View>

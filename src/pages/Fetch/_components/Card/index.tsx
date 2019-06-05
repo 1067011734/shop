@@ -60,7 +60,7 @@ class Index extends Component<CardProps> {
           </View>
         </View>
         <View className={`${prefixCls}-footer`}>
-          <XButton block>{operation}</XButton>
+          <XButton>{operation}</XButton>
         </View>
       </View>
     )
