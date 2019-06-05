@@ -1,4 +1,5 @@
 @import "../../style/common.less";
+@import "../../style/animate.less";
 @prefix-cls: ~"components-modal";
 
 .@{prefix-cls} {
@@ -12,6 +13,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &-content-scale {
+    animation: scale1x .1s;
+  }
   &-content {
     box-sizing: border-box;
     background: #ffffff;
@@ -21,6 +25,13 @@
     padding: 30rpx;
     max-height: calc(100vh - 60rpx);
     overflow: auto;
+    transform: scale(1);
+    position: relative;
+    &-close{
+      position: absolute;
+      right: 30rpx;
+      top: 30rpx;
+     }
   }
   &-hidden {
     visibility: hidden;

@@ -11,17 +11,13 @@ const prefixCls = 'components-menu-modal-detail';
 export interface CardProps {
   // 数据源
   dataSource?: any;
-  // 操作
-  operation?: any;
+  // 是否打开/显示
+  isOpened?: Boolean;
+  // 关闭modal
+  onClose?: Function
 }
 
 class Index extends Component<CardProps> {
-
-  static defaultProps = {
-    title: "",
-    dataSource: {},
-    operation: ""
-  }
 
   state = {
     // 规格类型
@@ -56,8 +52,8 @@ class Index extends Component<CardProps> {
    * @params item 被选钟规格的数据
   */
   handleSpecsClick = (item) => {
-    const { type,value } = item
-    this.setState({ specsActvieKey: { type,value } })
+    const { type, value } = item
+    this.setState({ specsActvieKey: { type, value } })
   }
 
   /**
@@ -65,19 +61,31 @@ class Index extends Component<CardProps> {
    * @params item 被选钟规格的数据
   */
   handleTemperatureClick = (item) => {
-    const { type,value } = item
-    this.setState({ temperatureActvieKey: { type,value }  })
+    const { type, value } = item
+    this.setState({ temperatureActvieKey: { type, value } })
+  }
+
+  /**
+   * 关闭modal
+   * @params item 被选钟规格的数据
+  */
+  handleCloseModal = () => {
+    const { onClose } = this.props
+
+    onClose && onClose({ isOpened: false })
   }
 
   render() {
-    const { dataSource, operation } = this.props
+    const { dataSource, isOpened } = this.props
     const { specsData, specsActvieKey, temperatureData, temperatureActvieKey } = this.state
     // 需求描述
-    const requestDescription = [specsActvieKey,temperatureActvieKey].map(x=>x.value).filter(Boolean).join(',')
+    const requestDescription = [specsActvieKey, temperatureActvieKey].map(x => x.value).filter(Boolean).join(',')
 
     return (
       <XModal
         width={'calc(100vw - 60rpx)'}
+        isOpened={isOpened}
+        onClose={this.handleCloseModal}
       >
         <View className={`${prefixCls}`}>
           <View className={`${prefixCls}-header`}>
@@ -116,7 +124,7 @@ class Index extends Component<CardProps> {
                 </View>
                 <View className={`${prefixCls}-footer-calc-content-description`}>
                   {requestDescription}
-              </View>
+                </View>
               </View>
               <View className={`${prefixCls}-footer-calc-plus`}>
                 <XRolling onChange={this.handleRolling} />

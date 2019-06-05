@@ -3,6 +3,7 @@ import { Image } from '@tarojs/components'
 import hotSrc from '@images/hot.png'
 import plusSrc from '@images/plus.png'
 import reduceSrc from '@images/reduce.png'
+import closeSrc from '@images/close.png'
 import './index.less';
 
 const prefixCls = 'components-icon';
@@ -10,7 +11,8 @@ const prefixCls = 'components-icon';
 const typeList = {
   hot: hotSrc,
   plus: plusSrc,
-  reduce: reduceSrc
+  reduce: reduceSrc,
+  close: closeSrc,
 }
 
 export interface XSwiperProps {

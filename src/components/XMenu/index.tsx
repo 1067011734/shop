@@ -23,6 +23,8 @@ export interface XMenuProps {
 class App extends Component<XMenuProps> {
   state = {
     actvieKey: 1,
+    // modal是否打开
+    isOpened: false
   }
 
   /**
@@ -34,9 +36,26 @@ class App extends Component<XMenuProps> {
     console.info(key)
   }
 
+  /**
+   * 关闭modal
+   * @params item 被选钟规格的数据
+  */
+  handleCloseModal = () => {
+    this.setState({ isOpened: false })
+  }
+
+  /**
+    * 点击餐品
+    * @params item 被点击的餐品数据
+  */
+  handleCardClick = (item) => {
+    console.info(item)
+    this.setState({ isOpened: true })
+  }
+
   render() {
     const { dataSource, siderData, logoSrc, height, swiperSrc } = this.props;
-    const { actvieKey } = this.state;
+    const { actvieKey, isOpened } = this.state;
 
     const scrollStyle = {
       height: height || 'auto'
@@ -83,14 +102,18 @@ class App extends Component<XMenuProps> {
                   <Card
                     dataSource={item}
                     key={item.id}
-                    operation="取餐"
+                    onClick={this.handleCardClick}
                   />
                 )
               }
             </View>
           </View>
         </ScrollView>
-        <DetailModal dataSource={dataSource?dataSource[0]:[]}></DetailModal>
+        <DetailModal
+          dataSource={dataSource ? dataSource[0] : []}
+          isOpened={isOpened}
+          onClose={this.handleCloseModal}
+        ></DetailModal>
       </View>
     )
   }
