@@ -2,8 +2,8 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Image } from '@tarojs/components'
 import XSwiper from '@components/XSwiper';
 import XIcon from '@components/XIcon';
-import XModal from '@components/XModal';
 import Card from './_components/Card';
+import DetailModal from './_components/DetailModal';
 import './index.less';
 
 const prefixCls = 'components-menu';
@@ -90,7 +90,7 @@ class App extends Component<XMenuProps> {
             </View>
           </View>
         </ScrollView>
-        <XModal></XModal>
+        <DetailModal dataSource={dataSource[0]}></DetailModal>
       </View>
     )
   }

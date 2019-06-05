@@ -54,10 +54,10 @@ class App extends Component<XSwiperProps> {
 
     return (
       <View className={prefixCls}>
-        <View className={`${prefixCls}-reduce ${!isComplete && !count ? `${prefixCls}-hidden` : ''}`} onClick={this.handleReduce}>
+        <View className={`${prefixCls}-reduce ${isComplete === false && !count ? `${prefixCls}-hidden` : ''}`} onClick={this.handleReduce}>
           <XIcon type='reduce' size={48} />
         </View>
-        <View className={`${prefixCls}-count ${!isComplete && !count ? `${prefixCls}-hidden` : ''}`}>
+        <View className={`${prefixCls}-count ${isComplete === false && !count ? `${prefixCls}-hidden` : ''}`}>
           {count}
         </View>
         <View className={`${prefixCls}-plus`} onClick={this.handleIncrease}>

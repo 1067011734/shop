@@ -25,7 +25,7 @@ class App extends Component<XSwiperProps> {
     return (
       <View className={prefixCls}>
         <View className={`${prefixCls}-content`}>
-          55555555
+          {this.props.children}
         </View>
         <View className={`${prefixCls}-mask`} />
       </View>
