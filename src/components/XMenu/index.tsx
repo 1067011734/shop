@@ -90,7 +90,7 @@ class App extends Component<XMenuProps> {
             </View>
           </View>
         </ScrollView>
-        <DetailModal dataSource={dataSource[0]}></DetailModal>
+        <DetailModal dataSource={dataSource?dataSource[0]:[]}></DetailModal>
       </View>
     )
   }

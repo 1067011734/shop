@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import XRolling from '@components/XRolling'
 import XModal from '@components/XModal'
+import Item from './Item'
 import './index.less'
 
 const prefixCls = 'components-menu-modal-detail';
@@ -23,10 +24,10 @@ class Index extends Component<CardProps> {
 
   state = {
     specsData: [
-      { id: 1, value: '三分钟气泡' },
-      { id: 2, value: '五分钟气泡' },
+      { id: 1, value: '三分钟气泡', type: 2 },
+      { id: 2, value: '五分钟气泡', type: 3 },
     ],
-    specsActvieKey: 1
+    specsActvieKey: null
   }
 
   componentDidMount() {
@@ -34,6 +35,15 @@ class Index extends Component<CardProps> {
 
   handleRolling = (count) => {
     console.info(count)
+  }
+
+  /**
+   * 规格
+   * @params item 被选钟规格的数据
+  */
+  handleSpecsClick = (item) => {
+    const { type } = item
+    this.setState({ specsActvieKey: type })
   }
 
   render() {
@@ -50,23 +60,12 @@ class Index extends Component<CardProps> {
             <View className={`${prefixCls}-body-name`}>
               {dataSource.name}
             </View>
-            <View className={`${prefixCls}-body-specs`}>
-              <View className={`${prefixCls}-body-specs-title`}>
-                规格
-              </View>
-              <View className={`${prefixCls}-body-specs-content`}>
-                {
-                  specsData && specsData.map(item => (
-                    <View
-                      className={`${prefixCls}-body-specs-content-item ${specsActvieKey === item.id ? `${prefixCls}-body-specs-content-item-active` : ''}`}
-                      key={item.id}
-                    >
-                      {item.value}
-                    </View>
-                  ))
-                }
-              </View>
-            </View>
+            <Item
+              title="规格"
+              dataSource={specsData}
+              activeKey={specsActvieKey}
+              onClick= {this.handleSpecsClick}
+            />
             <View className={`${prefixCls}-body-description`}>
               {dataSource.description}
             </View>
