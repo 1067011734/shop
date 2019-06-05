@@ -24,7 +24,9 @@ class App extends Component<XMenuProps> {
   state = {
     actvieKey: 1,
     // modal是否打开
-    isOpened: false
+    isOpened: false,
+    // 餐品详情
+    detailData:{}
   }
 
   /**
@@ -50,17 +52,17 @@ class App extends Component<XMenuProps> {
   */
   handleCardClick = (item) => {
     console.info(item)
-    this.setState({ isOpened: true })
+    this.setState({ detailData:item,isOpened: true })
   }
 
   render() {
     const { dataSource, siderData, logoSrc, height, swiperSrc } = this.props;
-    const { actvieKey, isOpened } = this.state;
+    const { actvieKey, isOpened, detailData} = this.state;
 
     const scrollStyle = {
       height: height || 'auto'
     }
-    console.info(siderData, logoSrc)
+    console.info(detailData)
 
     return (
       <View className={prefixCls}>
@@ -110,7 +112,7 @@ class App extends Component<XMenuProps> {
           </View>
         </ScrollView>
         <DetailModal
-          dataSource={dataSource ? dataSource[0] : []}
+          dataSource={detailData}
           isOpened={isOpened}
           onClose={this.handleCloseModal}
         ></DetailModal>
