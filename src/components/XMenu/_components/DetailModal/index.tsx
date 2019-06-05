@@ -30,7 +30,7 @@ class Index extends Component<CardProps> {
       { id: 2, value: '五分钟气泡', type: 3 },
     ],
     // 选中的规格标识
-    specsActvieKey: 2,
+    specsActvieKey: { value: '', type: null },
     // 温度类型
     temperatureData: [
       { id: 1, value: '正常冰(推荐)', type: 2 },
@@ -41,7 +41,7 @@ class Index extends Component<CardProps> {
       { id: 6, value: '不加冰', type: 7 },
     ],
     // 选中的温度标识
-    temperatureActvieKey: 5
+    temperatureActvieKey: { value: '', type: null },
   }
 
   componentDidMount() {
@@ -56,8 +56,8 @@ class Index extends Component<CardProps> {
    * @params item 被选钟规格的数据
   */
   handleSpecsClick = (item) => {
-    const { type } = item
-    this.setState({ specsActvieKey: type })
+    const { type,value } = item
+    this.setState({ specsActvieKey: { type,value } })
   }
 
   /**
@@ -65,13 +65,15 @@ class Index extends Component<CardProps> {
    * @params item 被选钟规格的数据
   */
   handleTemperatureClick = (item) => {
-    const { type } = item
-    this.setState({ temperatureActvieKey: type })
+    const { type,value } = item
+    this.setState({ temperatureActvieKey: { type,value }  })
   }
 
   render() {
     const { dataSource, operation } = this.props
     const { specsData, specsActvieKey, temperatureData, temperatureActvieKey } = this.state
+    // 需求描述
+    const requestDescription = [specsActvieKey,temperatureActvieKey].map(x=>x.value).filter(Boolean).join(',')
 
     return (
       <XModal
@@ -88,13 +90,13 @@ class Index extends Component<CardProps> {
             <Item
               title="规格"
               dataSource={specsData}
-              activeKey={specsActvieKey}
+              activeKey={specsActvieKey.type}
               onClick={this.handleSpecsClick}
             />
             <Item
               title="温度"
               dataSource={temperatureData}
-              activeKey={temperatureActvieKey}
+              activeKey={temperatureActvieKey.type}
               onClick={this.handleTemperatureClick}
             />
             <View className={`${prefixCls}-body-description`}>
@@ -113,7 +115,7 @@ class Index extends Component<CardProps> {
                   ￥ {dataSource.price}
                 </View>
                 <View className={`${prefixCls}-footer-calc-content-description`}>
-                  五分钟气泡(推荐)，正常冰(推荐)...
+                  {requestDescription}
               </View>
               </View>
               <View className={`${prefixCls}-footer-calc-plus`}>
