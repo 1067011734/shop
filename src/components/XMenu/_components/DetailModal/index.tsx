@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import XRolling from '@components/XRolling'
 import XModal from '@components/XModal'
+import XButton from '@components/XButton'
 import Item from './Item'
 import './index.less'
 
@@ -74,7 +75,7 @@ class Index extends Component<CardProps> {
 
     return (
       <XModal
-       width={'calc(100vw - 60rpx)'}
+        width={'calc(100vw - 60rpx)'}
       >
         <View className={`${prefixCls}`}>
           <View className={`${prefixCls}-header`}>
@@ -97,15 +98,30 @@ class Index extends Component<CardProps> {
               onClick={this.handleTemperatureClick}
             />
             <View className={`${prefixCls}-body-description`}>
-              {dataSource.description}
+              <View className={`${prefixCls}-body-description-title`}>
+                饮品描述
             </View>
-            <View className={`${prefixCls}-body-footer`}>
-              <View className={`${prefixCls}-body-footer-price`}>
-                ￥ {dataSource.price}
+              <View className={`${prefixCls}-body-description-content`}>
+                {dataSource.description}
               </View>
-              <View className={`${prefixCls}-body-footer-plus`}>
+            </View>
+          </View>
+          <View className={`${prefixCls}-footer`}>
+            <View className={`${prefixCls}-footer-calc`}>
+              <View className={`${prefixCls}-footer-calc-content`}>
+                <View className={`${prefixCls}-footer-calc-content-price`}>
+                  ￥ {dataSource.price}
+                </View>
+                <View className={`${prefixCls}-footer-calc-content-description`}>
+                  五分钟气泡(推荐)，正常冰(推荐)...
+              </View>
+              </View>
+              <View className={`${prefixCls}-footer-calc-plus`}>
                 <XRolling onChange={this.handleRolling} />
               </View>
+            </View>
+            <View className={`${prefixCls}-footer-btn`}>
+              <XButton>加入购物车</XButton>
             </View>
           </View>
         </View>
