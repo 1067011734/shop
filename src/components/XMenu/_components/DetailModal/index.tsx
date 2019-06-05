@@ -23,11 +23,24 @@ class Index extends Component<CardProps> {
   }
 
   state = {
+    // 规格类型
     specsData: [
       { id: 1, value: '三分钟气泡', type: 2 },
       { id: 2, value: '五分钟气泡', type: 3 },
     ],
-    specsActvieKey: null
+    // 选中的规格标识
+    specsActvieKey: 2,
+    // 温度类型
+    temperatureData: [
+      { id: 1, value: '正常冰(推荐)', type: 2 },
+      { id: 2, value: '少冰', type: 3 },
+      { id: 3, value: '少少冰', type: 4 },
+      { id: 4, value: '去冰', type: 5 },
+      { id: 5, value: '多冰', type: 6 },
+      { id: 6, value: '不加冰', type: 7 },
+    ],
+    // 选中的温度标识
+    temperatureActvieKey: 5
   }
 
   componentDidMount() {
@@ -46,9 +59,18 @@ class Index extends Component<CardProps> {
     this.setState({ specsActvieKey: type })
   }
 
+  /**
+   * 规格
+   * @params item 被选钟规格的数据
+  */
+  handleTemperatureClick = (item) => {
+    const { type } = item
+    this.setState({ temperatureActvieKey: type })
+  }
+
   render() {
     const { dataSource, operation } = this.props
-    const { specsData, specsActvieKey } = this.state
+    const { specsData, specsActvieKey, temperatureData, temperatureActvieKey } = this.state
 
     return (
       <XModal>
@@ -64,7 +86,13 @@ class Index extends Component<CardProps> {
               title="规格"
               dataSource={specsData}
               activeKey={specsActvieKey}
-              onClick= {this.handleSpecsClick}
+              onClick={this.handleSpecsClick}
+            />
+            <Item
+              title="温度"
+              dataSource={temperatureData}
+              activeKey={temperatureActvieKey}
+              onClick={this.handleTemperatureClick}
             />
             <View className={`${prefixCls}-body-description`}>
               {dataSource.description}
