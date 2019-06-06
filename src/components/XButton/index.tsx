@@ -11,14 +11,22 @@ export interface buttonProps {
   // 子元素
   children: any;
   // 将按钮宽度调整为其父宽度的选项
-  block?: Boolean
+  block?: Boolean;
   // 尺寸大小
-  size?: string
+  size?: string;
+  // 点击事件
+  onClick?: Function
 }
 
  class App extends Component<buttonProps, {}> {
   static defaultProps = {
     type: String,
+  }
+
+  handleClick = () =>{
+    const { onClick} = this.props;
+
+    onClick && onClick()
   }
 
   render() {
@@ -32,7 +40,7 @@ export interface buttonProps {
     });
 
     return (
-      <Button className={className}>{this.props.children}</Button>
+      <Button className={className} onClick={this.handleClick}>{this.props.children}</Button>
     )
   }
 }

@@ -1,4 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
+import { observer, inject } from '@tarojs/mobx'
 import { View, Image } from '@tarojs/components'
 import XRolling from '@components/XRolling'
 import XModal from '@components/XModal'
@@ -15,8 +16,12 @@ export interface CardProps {
   isOpened?: Boolean;
   // 关闭modal
   onClose?: Function
+  // mobx 购物数据
+  shoppingStore?: any
 }
 
+@inject('shoppingStore')
+@observer
 class Index extends Component<CardProps> {
 
   state = {
@@ -38,13 +43,21 @@ class Index extends Component<CardProps> {
     ],
     // 选中的温度标识
     temperatureActvieKey: { value: '', type: null },
+    // 点餐数量
+    count: 0
   }
 
   componentDidMount() {
   }
 
-  handleRolling = (count) => {
-    console.info(count)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isOpened !== this.props.isOpened) {
+      this.setState({ count: 0 })
+    }
+  }
+
+  handleRollingChange = (count) => {
+    this.setState({ count })
   }
 
   /**
@@ -75,12 +88,29 @@ class Index extends Component<CardProps> {
     onClose && onClose({ isOpened: false })
   }
 
+  /**
+   * 加入购物车
+   * @params item 被选钟规格的数据
+  */
+  handleShopping = () => {
+    const { onClose, dataSource, shoppingStore } = this.props
+    const { count } = this.state
+    const { id } = dataSource
+
+    const data ={id,count}
+
+    shoppingStore.saveItem(data)
+
+    onClose && onClose({ isOpened: false })
+  }
+
   render() {
-    const { dataSource, isOpened } = this.props
-    const { specsData, specsActvieKey, temperatureData, temperatureActvieKey } = this.state
+    const { dataSource = {}, isOpened, shoppingStore } = this.props
+    const { specsData, specsActvieKey, temperatureData, temperatureActvieKey, count } = this.state
     // 需求描述
     const requestDescription = [specsActvieKey, temperatureActvieKey].map(x => x.value).filter(Boolean).join(',')
 
+    const xRollingCount = count || shoppingStore.getItem(dataSource).count
     return (
       <XModal
         width={'calc(100vw - 60rpx)'}
@@ -127,11 +157,15 @@ class Index extends Component<CardProps> {
                 </View>
               </View>
               <View className={`${prefixCls}-footer-calc-plus`}>
-                <XRolling onChange={this.handleRolling} min={1} />
+                <XRolling
+                  onChange={this.handleRollingChange}
+                  min={1}
+                  count={xRollingCount}
+                />
               </View>
             </View>
             <View className={`${prefixCls}-footer-btn`}>
-              <XButton block size="middle">加入购物车</XButton>
+              <XButton block size="middle" onClick={this.handleShopping}>加入购物车</XButton>
             </View>
           </View>
         </View>
