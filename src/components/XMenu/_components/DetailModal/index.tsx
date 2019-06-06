@@ -127,7 +127,7 @@ class Index extends Component<CardProps> {
                 </View>
               </View>
               <View className={`${prefixCls}-footer-calc-plus`}>
-                <XRolling onChange={this.handleRolling} />
+                <XRolling onChange={this.handleRolling} min={1} />
               </View>
             </View>
             <View className={`${prefixCls}-footer-btn`}>

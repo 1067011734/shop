@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import XRolling from '@components/XRolling'
+import { observer, inject } from '@tarojs/mobx'
 import './index.less'
 
 const prefixCls = 'components-menu-card';
@@ -10,7 +11,11 @@ export interface CardProps {
   dataSource?: any;
   // 点击事件
   onClick?: Function;
+  shoppingStore?: any
 }
+
+@inject('shoppingStore')
+@observer
 
 class Index extends Component<CardProps> {
 
@@ -25,8 +30,10 @@ class Index extends Component<CardProps> {
   componentDidMount() {
   }
 
-  handleRolling = (count) => {
-    console.info(count)
+  handleRollingChange = (count) => {
+    const { dataSource,shoppingStore } = this.props
+    const data  = {...dataSource,count}
+    shoppingStore.saveItem(data)
   }
 
   handleWrapClick = (item) => {
@@ -36,7 +43,8 @@ class Index extends Component<CardProps> {
   }
 
   render() {
-    const { dataSource } = this.props
+    const { dataSource,shoppingStore } = this.props
+    const count = shoppingStore.getItem(dataSource).count
 
     return (
       <View className={`${prefixCls}`} onClick={() => { this.handleWrapClick(dataSource) }}>
@@ -57,8 +65,9 @@ class Index extends Component<CardProps> {
             <View className={`${prefixCls}-body-footer-plus`}>
               <XRolling
                 isComplete={false}
-                onChange={this.handleRolling}
+                onChange={this.handleRollingChange}
                 stopPropagation
+                count={count}
               />
             </View>
           </View>

@@ -6,6 +6,10 @@ import './index.less';
 const prefixCls = 'components-rolling';
 
 export interface XSwiperProps {
+  // 数据源
+  count?: any;
+  // 最小值
+  min?: Number;
   // 是否显示完整
   isComplete?: Boolean;
   // 值改变触发的回调事件
@@ -17,10 +21,6 @@ export interface XSwiperProps {
 }
 
 class App extends Component<XSwiperProps> {
-
-  state = {
-    count: 0
-  }
 
   handleIncrease = () => {
     const { onChange } = this.props
@@ -36,12 +36,14 @@ class App extends Component<XSwiperProps> {
   }
 
   handleReduce = () => {
-    const { onChange } = this.props
-    const { count } = this.state
+    const { onChange, min, count=0 } = this.props
 
     const result = count - 1
 
     if (result < 0) {
+      return
+    }
+    if (min && min > result) {
       return
     }
 
@@ -63,8 +65,9 @@ class App extends Component<XSwiperProps> {
   }
 
   render() {
-    const { isComplete } = this.props
-    const { count } = this.state
+    const { isComplete, min, count=0 } = this.props
+
+    let num = min && min > count ? min : count
 
     return (
       <View className={prefixCls} onClick={this.handleClick}>
@@ -72,7 +75,7 @@ class App extends Component<XSwiperProps> {
           <XIcon type='reduce' size={48} />
         </View>
         <View className={`${prefixCls}-count ${isComplete === false && !count ? `${prefixCls}-hidden` : ''}`}>
-          {count}
+          {num}
         </View>
         <View className={`${prefixCls}-plus`} onClick={this.handleIncrease}>
           <XIcon type='plus' size={48} />

@@ -20,13 +20,21 @@ export interface XMenuProps {
   swiperSrc?: Array<any>;
 }
 
-class App extends Component<XMenuProps> {
+export interface XMenuState {
+  actvieKey?: Number;
+  // modal是否打开
+  isOpened: Boolean;
+  // 餐品详情
+  detailData: any;
+}
+
+class App extends Component<XMenuProps, XMenuState> {
   state = {
     actvieKey: 1,
     // modal是否打开
     isOpened: false,
     // 餐品详情
-    detailData:{}
+    detailData: {},
   }
 
   /**
@@ -52,12 +60,12 @@ class App extends Component<XMenuProps> {
   */
   handleCardClick = (item) => {
     console.info(item)
-    this.setState({ detailData:item,isOpened: true })
+    this.setState({ detailData: item, isOpened: true })
   }
 
   render() {
     const { dataSource, siderData, logoSrc, height, swiperSrc } = this.props;
-    const { actvieKey, isOpened, detailData} = this.state;
+    const { actvieKey, isOpened, detailData } = this.state;
 
     const scrollStyle = {
       height: height || 'auto'
