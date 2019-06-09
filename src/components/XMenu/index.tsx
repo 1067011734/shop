@@ -104,16 +104,25 @@ class App extends Component<XMenuProps, XMenuState> {
               <XSwiper dataSource={swiperSrc} />
             </View>
             <View className={`${prefixCls}-content-list`}>
-              <View className={`${prefixCls}-content-list-title`}>
-                今日推荐<XIcon type='hot' size={[13, 15]} gutter />
-              </View>
               {
-                dataSource && dataSource.map(item =>
-                  <Card
-                    dataSource={item}
-                    key={item.id}
-                    onClick={this.handleCardClick}
-                  />
+                dataSource && dataSource.map(result =>
+                  (
+                    <View
+                      key={result.id}>
+                      <View className={`${prefixCls}-content-list-title`}>
+                        {result.title}<XIcon type='hot' size={[13, 15]} gutter />
+                      </View>
+                      {
+                        result.list && result.list.map(item => (
+                          <Card
+                            key={item.id}
+                            dataSource={item}
+                            onClick={this.handleCardClick}
+                          />
+                        ))
+                      }
+                    </View>
+                  )
                 )
               }
             </View>
