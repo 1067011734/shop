@@ -44,17 +44,24 @@ class Index extends Component<CardProps> {
     // 选中的温度标识
     temperatureActvieKey: { value: '', type: null },
     // 点餐数量
-    count: 0
+    count: 0,
+    isOpened: null
   }
 
   componentDidMount() {
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isOpened !== this.props.isOpened) {
-      this.setState({ count: 0 })
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.isOpened !== prevState.isOpened) {
+      return ({
+        isOpened: nextProps.isOpened,
+        count: 0
+       })
     }
+    return null
   }
+
 
   handleRollingChange = (count) => {
     this.setState({ count })
@@ -97,7 +104,7 @@ class Index extends Component<CardProps> {
     const { count } = this.state
     const { id } = dataSource
 
-    const data ={id,count}
+    const data = { id, count }
 
     shoppingStore.saveItem(data)
 

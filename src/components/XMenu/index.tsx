@@ -30,7 +30,7 @@ export interface XMenuState {
 
 class App extends Component<XMenuProps, XMenuState> {
   state = {
-    actvieKey: 1,
+    actvieKey: -1,
     // modal是否打开
     isOpened: false,
     // 餐品详情
@@ -80,10 +80,10 @@ class App extends Component<XMenuProps, XMenuState> {
           className={`${prefixCls}-sider`}
         >
           {
-            siderData && siderData.map(item => (
+            siderData && siderData.map((item,index) => (
               <View
-                className={`${prefixCls}-sider-item ${item.id === actvieKey ? `${prefixCls}-sider-item-active` : ''}`}
-                onClick={() => { this.handleToggle(item.id) }}
+                className={`${prefixCls}-sider-item ${index === actvieKey || index===0 && actvieKey===-1  ? `${prefixCls}-sider-item-active` : ''}`}
+                onClick={() => { this.handleToggle(index) }}
                 key={item.id}
               >
                 {item.value}
@@ -95,6 +95,11 @@ class App extends Component<XMenuProps, XMenuState> {
           className={`${prefixCls}-content`}
           style={scrollStyle}
           scrollY
+          scrollIntoView={`${prefixCls}-content-list-${actvieKey}`}
+          scrollWithAnimation
+          onScroll={(data) => {
+            console.info(data)
+          }}
         >
           <View className={`${prefixCls}-content-inner`}>
             <View className={`${prefixCls}-content-banner`}>
@@ -105,10 +110,13 @@ class App extends Component<XMenuProps, XMenuState> {
             </View>
             <View className={`${prefixCls}-content-list`}>
               {
-                dataSource && dataSource.map(result =>
+                dataSource && dataSource.map((result,index) =>
                   (
                     <View
-                      key={result.id}>
+                      key={result.id}
+                      id={`${prefixCls}-content-list-${index}`}
+                      data-name={`scroll-content-list-${index}`}
+                    >
                       <View className={`${prefixCls}-content-list-title`}>
                         {result.title}<XIcon type='hot' size={[13, 15]} gutter />
                       </View>
