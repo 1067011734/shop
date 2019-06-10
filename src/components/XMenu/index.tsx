@@ -22,7 +22,10 @@ export interface XMenuProps {
 }
 
 export interface XMenuState {
-  actvieKey?: Number;
+  // 侧边栏滚动选择的下标
+  siderActvieKey?: Number;
+  // 主体滚动选择的下标
+  contentActvieKey?: Number;
   // modal是否打开
   isOpened: Boolean;
   // 餐品详情
@@ -31,7 +34,8 @@ export interface XMenuState {
 
 class App extends Component<XMenuProps, XMenuState> {
   state = {
-    actvieKey: -1,
+    siderActvieKey: -1,
+    contentActvieKey: -1,
     // modal是否打开
     isOpened: false,
     // 餐品详情
@@ -44,7 +48,7 @@ class App extends Component<XMenuProps, XMenuState> {
    * @param key 切换的侧边栏的标识
   */
   handleToggle = (key) => {
-    this.setState({ actvieKey: key });
+    this.setState({ siderActvieKey: key, contentActvieKey: key });
     console.info(key)
   }
 
@@ -104,23 +108,23 @@ class App extends Component<XMenuProps, XMenuState> {
   }
 
   cacleActvieKey = (arr, scrollTop = 0) => {
-    const { actvieKey } = this.state
+    const { siderActvieKey } = this.state
 
     const index = arr.findIndex(value => value >= scrollTop)
 
-    if (index !== actvieKey) {
-      this.setState({ actvieKey: index })
+    if (index !== siderActvieKey) {
+      this.setState({ siderActvieKey: index })
     }
   }
 
   render() {
     const { dataSource, siderData, logoSrc, height, swiperSrc } = this.props;
-    const { actvieKey, isOpened, detailData } = this.state;
+    const { siderActvieKey, contentActvieKey, isOpened, detailData } = this.state;
 
     const scrollStyle = {
       height: height || 'auto'
     }
-    console.info(detailData, `${prefixCls}-content-list-${actvieKey}`, actvieKey)
+    console.info(detailData, `${prefixCls}-content-list-${siderActvieKey}`, siderActvieKey)
 
     return (
       <View className={prefixCls}>
@@ -132,7 +136,7 @@ class App extends Component<XMenuProps, XMenuState> {
           {
             siderData && siderData.map((item, index) => (
               <View
-                className={`${prefixCls}-sider-item ${index === actvieKey || index === 0 && actvieKey === -1 ? `${prefixCls}-sider-item-active` : ''}`}
+                className={`${prefixCls}-sider-item ${index === siderActvieKey || index === 0 && siderActvieKey === -1 ? `${prefixCls}-sider-item-active` : ''}`}
                 onClick={() => { this.handleToggle(index) }}
                 key={item.id}
               >
@@ -145,7 +149,7 @@ class App extends Component<XMenuProps, XMenuState> {
           className={`${prefixCls}-content`}
           style={scrollStyle}
           scrollY
-          scrollIntoView={`${prefixCls}-content-list-${actvieKey}`}
+          scrollIntoView={`${prefixCls}-content-list-${contentActvieKey}`}
           scrollWithAnimation
           onScroll={this.onScrollContent}
         >
