@@ -3,12 +3,14 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import XSwitch from '@components/XSwitch'
 import XTabs from '@components/XTabs'
-import XMenu from '@components/XMenu'
+import Drink from './Drink'
+import Meal from './Meal'
 import './index.less'
 
 class Index extends Component {
 
   state = {
+    tabsKey: 1,
     siderData: [
       { id: 1, value: '今日推荐' },
       { id: 2, value: 'YITO森林' },
@@ -20,6 +22,7 @@ class Index extends Component {
       { id: 8, value: 'YITO森林' },
       { id: 9, value: '水母家族' },
     ],
+    logoSrc: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559306415426&di=45afbd8b08abe9548dd8763fcd231bfa&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201801%2F16%2F001613ga63zcpop3pomkkb.jpg",
     swiperSrc: [
       'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=971903522,2055241417&fm=26&gp=0.jpg',
       'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg',
@@ -88,12 +91,14 @@ class Index extends Component {
      * 切换标签页
      * @param key 切换的开关的标识
     */
-  handleXTabsClick = (id) => {
-    console.info(id)
+  handleXTabsClick = (tabsKey) => {
+    this.setState({ tabsKey })
   }
 
   render() {
-    const { siderData, swiperSrc, contentData } = this.state
+    const { siderData, swiperSrc, contentData, logoSrc, tabsKey } = this.state
+    const dataSource = { siderData, swiperSrc, contentData, logoSrc }
+
     return (
       <View className='page page-order'>
         <View className="page-header">
@@ -110,17 +115,12 @@ class Index extends Component {
             dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
             onClick={this.handleXTabsClick}
           />
-          <XMenu
-            height={'calc(100vh - 92rpx - 56rpx)'}
-            siderData={siderData}
-            logoSrc={"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559306415426&di=45afbd8b08abe9548dd8763fcd231bfa&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201801%2F16%2F001613ga63zcpop3pomkkb.jpg"}
-            swiperSrc={swiperSrc}
-            dataSource={contentData}
-            onClick={this.handleXTabsClick}
-          />
-        </View>
-        <View className="page-footer">
-          {/* 历史订单 > */}
+          <View className={`${tabsKey === 1 ? '' : 'hidden'} flex-column`}>
+            <Drink dataSource={dataSource} />
+          </View>
+          <View className={`${tabsKey === 2 ? '' : 'hidden'} flex-column`}>
+            <Meal />
+          </View>
         </View>
       </View>
     )

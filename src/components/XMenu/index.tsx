@@ -14,7 +14,7 @@ export interface XMenuProps {
   siderData?: Array<any>;
   logoSrc?: string;
   dataSource: any;
-  onClick: Function;
+  onClick?: Function;
   // 高度
   height?: string;
   // 轮播图片地址

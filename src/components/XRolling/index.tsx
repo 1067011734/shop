@@ -24,15 +24,12 @@ class App extends Component<XSwiperProps> {
 
   handleIncrease = () => {
     const { onChange } = this.props
-    const { count } = this.state
+
+    let count = this.getCount()
 
     const result = count + 1
 
-    this.setState({
-      count: result
-    }, () => {
-      onChange && onChange(result)
-    })
+    onChange && onChange(result)
   }
 
   handleReduce = () => {
@@ -64,10 +61,15 @@ class App extends Component<XSwiperProps> {
     onClick && onClick(event)
   }
 
+  getCount =()=>{
+    const { min, count=0 } = this.props
+    let result = min && min > count ? min : count
+    return result
+  }
   render() {
-    const { isComplete, min, count=0 } = this.props
+    const { isComplete } = this.props
 
-    let num = min && min > count ? min : count
+    let count = this.getCount()
 
     return (
       <View className={prefixCls} onClick={this.handleClick}>
@@ -75,7 +77,7 @@ class App extends Component<XSwiperProps> {
           <XIcon type='reduce' size={48} />
         </View>
         <View className={`${prefixCls}-count ${isComplete === false && !count ? `${prefixCls}-hidden` : ''}`}>
-          {num}
+          {count}
         </View>
         <View className={`${prefixCls}-plus`} onClick={this.handleIncrease}>
           <XIcon type='plus' size={48} />
