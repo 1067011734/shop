@@ -38,6 +38,7 @@ class App extends Component<XMenuProps, XMenuState> {
     detailData: {},
   }
 
+  scrollContentHeightArr = [] as any;
   /**
    * 切换侧边栏
    * @param key 切换的侧边栏的标识
@@ -64,42 +65,52 @@ class App extends Component<XMenuProps, XMenuState> {
     this.setState({ detailData: item, isOpened: true })
   }
 
-   /**
-    * 主列表触发滚动事件
-    * @params data 滚动获取的数据
-  */
+  /**
+   * 主列表触发滚动事件
+   * @params data 滚动获取的数据
+ */
 
   onScrollContent = (data) => {
-    return
-    const { actvieKey } = this.state
-
+    const { scrollContentHeightArr } = this
     const { scrollTop } = data.detail
 
+    if (!scrollContentHeightArr.length) {
+      this.cacleScrollContent().then(arr => {
+        this.scrollContentHeightArr = arr
+        this.cacleActvieKey(arr, scrollTop)
+      })
+      return
+    }
+    this.cacleActvieKey(scrollContentHeightArr, scrollTop)
+  }
+
+  cacleScrollContent() {
     const query = Taro.createSelectorQuery().in(this.$scope)
 
-    new Promise(res => {
+    return new Promise(res => {
       query.select(`.${prefixCls}-content-header`)
-        .boundingClientRect(rect => {
+        .boundingClientRect((rect: any) => {
           const contentTop = rect.height
 
           query.selectAll(`.${prefixCls}-content-list-team`)
-            .boundingClientRect(rects => {
+            .boundingClientRect((rects: any) => {
               const result = rects.map(x => x.height).map((x, y, z) => Count(z, y, contentTop))
               res(result)
             })
             .exec()
         })
         .exec()
-    }).then(teamHeightArr => {
-      return
-      const index = teamHeightArr.findIndex(value => value >= scrollTop)
-      console.info(teamHeightArr, index)
-      setTimeout(() => {
-        if (index !== actvieKey) {
-          // this.setState({ actvieKey: index })
-        }
-      }, 500);
     })
+  }
+
+  cacleActvieKey = (arr, scrollTop = 0) => {
+    const { actvieKey } = this.state
+
+    const index = arr.findIndex(value => value >= scrollTop)
+
+    if (index !== actvieKey) {
+      this.setState({ actvieKey: index })
+    }
   }
 
   render() {
