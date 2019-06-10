@@ -30,7 +30,7 @@ class App extends Component<XSwiperProps> {
       <View className={prefixCls}>
         <Swiper
           circular
-          onchange={this.handleChange}
+          onChange={this.handleChange}
           autoplay
         >
           {
