@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import XSwiper from '@components/XSwiper';
+import XSwiper from '@components/XSwiper'
+import XTitle from '@components/XTitle'
 import './index.less'
 
 export interface IndexProps {
@@ -33,6 +34,7 @@ class Index extends Component<IndexProps> {
     return (
       <View className="page-content-meal">
         <XSwiper dataSource={swiperSrc} />
+        <XTitle>选择生酮套餐</XTitle>
         套餐233
       </View>
     )
