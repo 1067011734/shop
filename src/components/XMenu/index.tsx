@@ -98,7 +98,7 @@ class App extends Component<XMenuProps, XMenuState> {
 
           query.selectAll(`.${prefixCls}-content-list-team`)
             .boundingClientRect((rects: any) => {
-              const result = rects.map(x => x.height).map((x, y, z) => Count(z, y, contentTop))
+              const result = rects.map(x => x.height).map((_x, y, z) => Count(z, y, contentTop))
               res(result)
             })
             .exec()
