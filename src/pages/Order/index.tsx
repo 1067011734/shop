@@ -11,7 +11,7 @@ import './index.less'
 class Index extends Component {
 
   state = {
-    tabsKey: 2,
+    tabsKey: 1,
     dataSource:{
       siderData: [
         { id: 1, value: '今日推荐' },
@@ -75,7 +75,7 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    this.getList()
+    // this.getList()
   }
 
   componentWillUnmount() { }
