@@ -104,7 +104,11 @@ class Index extends Component {
    * @param {number} key 切换的开关的标识
   */
   handleXSwitchChange = (key) => {
-    this.setState({ switchKey: key })
+    this.setState({ switchKey: key },()=>{
+      key ===2 && Taro.navigateTo({
+        url: '/pages/Address/index'
+      })
+    })
   }
 
   /**
@@ -132,7 +136,7 @@ class Index extends Component {
             星光大道店 >
           </View>
           <XSwitch
-            dataSource={[{ id: 1, value: '外卖' }, { id: 2, value: '自取' }]}
+            dataSource={[{ id: 1, value: '自取' }, { id: 2, value: '外卖' }]}
             onChange={this.handleXSwitchChange}
             activeKey={switchKey}
           />

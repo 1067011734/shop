@@ -51,7 +51,6 @@ class App extends Component<XSwiperProps> {
       ...contentBaseClass,
       [`${prefixCls}-content-default`]: true,
     });
-    console.info(contentDefaultClassName)
 
     const style = `width:${width || 'auto'}`
 
