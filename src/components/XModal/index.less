@@ -13,15 +13,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  &-content-scale-animation {
-    animation: scale1x .1s;
+  &-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
   }
   &-content-scale {
     box-sizing: border-box;
     background: #ffffff;
     border-radius: 12rpx;
-    opacity: 1;
-    z-index: 2;
     padding: 30rpx;
     max-height: calc(100vh - 60rpx);
     overflow: auto;
@@ -32,6 +34,12 @@
       right: 30rpx;
       top: 30rpx;
      }
+  }
+  &-content-scale-animation {
+    animation: scale1x .1s;
+  }
+  &-content-default{
+    color: #ffffff;
   }
   &-hidden {
     visibility: hidden;

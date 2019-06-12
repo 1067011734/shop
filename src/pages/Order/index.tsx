@@ -3,16 +3,21 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import XSwitch from '@components/XSwitch'
 import XTabs from '@components/XTabs'
+import XModal from '@components/XModal'
 import { getOrderList } from '@apis/order'
 import Drink from './Drink'
 import Meal from './Meal'
 import './index.less'
 
+const prefixCls = 'page-order'
+
 class Index extends Component {
 
   state = {
     tabsKey: 1,
-    dataSource:{
+    // 模态框 显示/隐藏
+    isOpened: true,
+    dataSource: {
       siderData: [
         { id: 1, value: '今日推荐' },
         { id: 2, value: 'YITO森林' },
@@ -89,7 +94,7 @@ class Index extends Component {
     getOrderList().then(data => {
       const { result } = data
 
-      this.setState({ dataSource:result })
+      this.setState({ dataSource: result })
     })
   }
 
@@ -102,18 +107,25 @@ class Index extends Component {
   }
 
   /**
-     * 切换标签页
-     * @param key 切换的开关的标识
-    */
-  handleXTabsClick = (tabsKey) => {
+   * 切换标签页
+   * @param key 切换的开关的标识
+   * @param boolean 是否关闭模态框
+  */
+  handleXTabsClick = (tabsKey, boolean) => {
+    const { isOpened } = this.state
+
+    if (isOpened !== boolean) {
+      this.setState({ isOpened: boolean })
+    }
+
     this.setState({ tabsKey })
   }
 
   render() {
-    const { dataSource, tabsKey } = this.state
+    const { dataSource, tabsKey, isOpened } = this.state
 
     return (
-      <View className='page page-order'>
+      <View className={`page ${prefixCls}`}>
         <View className="page-header">
           <View className="page-header-content">
             星光大道店 >
@@ -126,7 +138,8 @@ class Index extends Component {
         <View className="page-content">
           <XTabs
             dataSource={[{ id: 1, value: '生酮饮品' }, { id: 2, value: '生酮套餐' }]}
-            onClick={this.handleXTabsClick}
+            activeKey={tabsKey}
+            onChange={this.handleXTabsClick}
           />
           <View className={`${tabsKey === 1 ? '' : 'hidden'} flex-column`}>
             <Drink dataSource={dataSource} />
@@ -135,6 +148,17 @@ class Index extends Component {
             <Meal />
           </View>
         </View>
+        <XModal isOpened={isOpened}>
+          <View className={`${prefixCls}-modal-switch`}>
+            <View
+              className={`${prefixCls}-modal-switch-left`}
+              onClick={() => { this.handleXTabsClick(1, false) }}
+            >饮品</View>
+            <View
+              onClick={() => { this.handleXTabsClick(2, false) }}
+            >套餐</View>
+          </View>
+        </XModal>
       </View>
     )
   }

@@ -15,6 +15,8 @@ export interface XSwiperProps {
   mode?: string;
   // 关闭modal
   onClose?: Function
+  // 容器类名
+  className?: string
 }
 
 class App extends Component<XSwiperProps> {
@@ -27,17 +29,30 @@ class App extends Component<XSwiperProps> {
 
 
   render() {
-    const { width, isOpened, mode = 'default' } = this.props
+    const { width, isOpened, mode = 'default', className = "" } = this.props
 
     const wrapClassName = classNames({
       [`${prefixCls}`]: true,
       [`${prefixCls}-hidden`]: !isOpened,
     });
 
+    const contentBaseClass = {
+      [`${prefixCls}-content`]: true,
+      [className]: true
+    }
+
     const contentScaleClassName = classNames({
-      [`${prefixCls}-content-scale-animation`]: isOpened,
+      ...contentBaseClass,
       [`${prefixCls}-content-scale`]: true,
+      [`${prefixCls}-content-scale-animation`]: isOpened,
     });
+
+    const contentDefaultClassName = classNames({
+      ...contentBaseClass,
+      [`${prefixCls}-content-default`]: true,
+    });
+    console.info(contentDefaultClassName)
+
     const style = `width:${width || 'auto'}`
 
     let WrapContent = null as any
@@ -56,7 +71,7 @@ class App extends Component<XSwiperProps> {
         break
       }
       case 'default': {
-        WrapContent = <View className={contentScaleClassName} style={style}>
+        WrapContent = <View className={contentDefaultClassName} style={style}>
           {this.props.children}
         </View>
         break
