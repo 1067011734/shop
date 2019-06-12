@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import XSwiper from '@components/XSwiper'
 import XTitle from '@components/XTitle'
+import { unique } from '@utils/function'
 import Card from './_components/Card'
 import './index.less'
 
@@ -19,7 +20,7 @@ class Index extends Component<IndexProps> {
     ],
     mealData: [
       { src: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=971903522,2055241417&fm=26&gp=0.jpg', title: '专业版套餐' },
-      { src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg', title: '尊享版套餐',type:'danger' }
+      { src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg', title: '尊享版套餐', type: 'danger' }
     ]
   }
 
@@ -44,7 +45,7 @@ class Index extends Component<IndexProps> {
         <View className="page-content">
           <XTitle>选择生酮套餐</XTitle>
           {
-            mealData && mealData.map((x, y) => <Card title={x.title} src={x.src} key={y} type={x.type}/>)
+            mealData && mealData.map(x => <Card title={x.title} src={x.src} key={unique()} type={x.type} />)
           }
         </View>
       </View>

@@ -1,6 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
 import shoppingStore from './store/shopping'
+import Index from './pages/Order'
 
 import './app.less'
 

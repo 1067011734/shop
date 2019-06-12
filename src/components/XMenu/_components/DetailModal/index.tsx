@@ -123,6 +123,7 @@ class Index extends Component<CardProps> {
         width={'calc(100vw - 60rpx)'}
         isOpened={isOpened}
         onClose={this.handleCloseModal}
+        mode="scale"
       >
         <View className={`${prefixCls}`}>
           <View className={`${prefixCls}-header`}>

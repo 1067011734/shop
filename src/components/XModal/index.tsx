@@ -11,6 +11,8 @@ export interface XSwiperProps {
   width?: any;
   // 是否打开/显示
   isOpened?: Boolean;
+  // 模态框面板的状态 scale:放大 | default
+  mode?: string;
   // 关闭modal
   onClose?: Function
 }
@@ -23,32 +25,47 @@ class App extends Component<XSwiperProps> {
     onClose && onClose({ isOpened: false })
   }
 
+
   render() {
-    const { width, isOpened } = this.props
+    const { width, isOpened, mode = 'default' } = this.props
 
     const wrapClassName = classNames({
       [`${prefixCls}`]: true,
       [`${prefixCls}-hidden`]: !isOpened,
     });
 
-    const contentClassName = classNames({
-      [`${prefixCls}-content-scale`]: isOpened,
-      [`${prefixCls}-content`]: true,
+    const contentScaleClassName = classNames({
+      [`${prefixCls}-content-scale-animation`]: isOpened,
+      [`${prefixCls}-content-scale`]: true,
     });
-
     const style = `width:${width || 'auto'}`
 
-    return (
-      <View className={wrapClassName}>
-        <View className={contentClassName} style={style}>
+    let WrapContent = null as any
+
+    switch (mode) {
+      case 'scale': {
+        WrapContent = <View className={contentScaleClassName} style={style}>
           <View
-            className={`${prefixCls}-content-close`}
+            className={`${prefixCls}-content-scale-close`}
             onClick={this.handleClose}
           >
             <XIcon type='close' size={48} />
           </View>
           {this.props.children}
         </View>
+        break
+      }
+      case 'default': {
+        WrapContent = <View className={contentScaleClassName} style={style}>
+          {this.props.children}
+        </View>
+        break
+      }
+    }
+
+    return (
+      <View className={wrapClassName}>
+        {WrapContent}
         <View className={`${prefixCls}-mask`} />
       </View>
     )
