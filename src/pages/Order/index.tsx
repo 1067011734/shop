@@ -15,8 +15,9 @@ class Index extends Component {
 
   state = {
     tabsKey: 1,
+    switchKey: 1,
     // 模态框 显示/隐藏
-    isOpened: true,
+    isOpened: false,
     dataSource: {
       siderData: [
         { id: 1, value: '今日推荐' },
@@ -100,10 +101,10 @@ class Index extends Component {
 
   /**
    * 切换开关
-   * @param key 切换的开关的标识
+   * @param {number} key 切换的开关的标识
   */
-  handleXSwitchClick = (id) => {
-    console.info(id)
+  handleXSwitchChange = (key) => {
+    this.setState({ switchKey: key })
   }
 
   /**
@@ -122,7 +123,7 @@ class Index extends Component {
   }
 
   render() {
-    const { dataSource, tabsKey, isOpened } = this.state
+    const { dataSource, tabsKey, isOpened, switchKey } = this.state
 
     return (
       <View className={`page ${prefixCls}`}>
@@ -132,7 +133,8 @@ class Index extends Component {
           </View>
           <XSwitch
             dataSource={[{ id: 1, value: '外卖' }, { id: 2, value: '自取' }]}
-            onClick={this.handleXSwitchClick}
+            onChange={this.handleXSwitchChange}
+            activeKey={switchKey}
           />
         </View>
         <View className="page-content">
