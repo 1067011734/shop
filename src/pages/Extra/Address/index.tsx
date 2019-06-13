@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View,Map } from '@tarojs/components'
 import './index.less'
 
 class Index extends Component {
@@ -43,6 +43,7 @@ class Index extends Component {
       <View className='page page-order'>
         <View className="page-content">
           我的
+          <Map />
         </View>
         <View className="page-footer">
           {/* 历史订单 > */}

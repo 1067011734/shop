@@ -26,10 +26,11 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/Extra/Map/index',
+      'pages/Extra/Address/index',
       'pages/Order/index',
       'pages/Fetch/index',
       'pages/My/index',
-      'pages/Address/index',
     ],
     window: {
       backgroundTextStyle: 'light',

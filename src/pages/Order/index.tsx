@@ -106,7 +106,7 @@ class Index extends Component {
   handleXSwitchChange = (key) => {
     this.setState({ switchKey: key },()=>{
       key ===2 && Taro.navigateTo({
-        url: '/pages/Address/index'
+        url: '/pages/Extra/Address/index'
       })
     })
   }
