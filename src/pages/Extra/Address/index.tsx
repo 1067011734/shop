@@ -3,6 +3,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Input } from '@tarojs/components'
 import XForm from '@components/XForm/Form'
 import XFormItem from '@components/XForm/FormItem'
+import XButton from '@components/XButton'
 import './index.less'
 
 const prefixCls = 'page-address';
@@ -10,6 +11,7 @@ const prefixCls = 'page-address';
 class Index extends Component {
 
   state = {
+    address: '',
     list: [
       { title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 1 },
       { title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 2 },
@@ -43,13 +45,15 @@ class Index extends Component {
 
   chooseLocation = () => {
     Taro.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
       success: res => {
         const { latitude, longitude } = res
         this.setState({ latitude, longitude })
         Taro.chooseLocation({
           success: res => {
-            console.info(res)
+            const { address } = res
+
+            this.setState({ address })
           }
         })
       }
@@ -57,7 +61,7 @@ class Index extends Component {
   }
 
   render() {
-    const { list } = this.state
+    const { address } = this.state
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
@@ -68,13 +72,23 @@ class Index extends Component {
             <XFormItem title="手机号码"  >
               <Input placeholder="请输入手机号码" type="number" ></Input>
             </XFormItem>
-            <XFormItem title="收货地址" border={false} >
-              <Input ></Input>
+            <XFormItem title="收货地址">
+              <View className={`${prefixCls}-location`} onClick={this.chooseLocation}>
+                <View className={`${prefixCls}-location-content`}>
+                  {address}
+                </View>
+                <View className={`${prefixCls}-extra`}>
+                  选择
+                </View>
+              </View>
+            </XFormItem>
+            <XFormItem title="详细地址" border={false}>
+              <Input placeholder="如道路、门牌号、小区、楼栋号等"></Input>
             </XFormItem>
           </XForm>
         </View>
         <View className="page-footer">
-          {/* 历史订单 > */}
+          <XButton type="black" size="big" block>保存</XButton>
         </View>
       </View>
     )

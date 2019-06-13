@@ -35,7 +35,9 @@ export interface buttonProps {
     const className = classNames({
       [`${prefixCls}`]: true,
       [`${prefixCls}-block`]: block,
+      [`${prefixCls}-size-big`]: size==='big',
       [`${prefixCls}-size-middle`]: size==='middle',
+      [`${prefixCls}-type-black`]: type==='black',
       // [`${prefixCls}-block`]: Boolean(block),
     });
 
