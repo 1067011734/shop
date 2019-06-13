@@ -1,7 +1,11 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import XForm from '@components/XForm/Form'
+import XFormItem from '@components/XForm/FormItem'
 import './index.less'
+
+const prefixCls = 'page-address';
 
 class Index extends Component {
 
@@ -44,7 +48,7 @@ class Index extends Component {
         const { latitude, longitude } = res
         this.setState({ latitude, longitude })
         Taro.chooseLocation({
-          success:res=>{
+          success: res => {
             console.info(res)
           }
         })
@@ -55,8 +59,11 @@ class Index extends Component {
   render() {
     const { list } = this.state
     return (
-      <View className='page page-order'>
+      <View className={`page ${prefixCls}`}>
         <View className="page-content">
+          <XForm>
+            <XFormItem title="收货人"></XFormItem>
+          </XForm>
           我的
         </View>
         <View className="page-footer">
