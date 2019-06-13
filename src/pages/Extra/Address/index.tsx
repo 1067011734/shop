@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View,Map } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import './index.less'
 
 class Index extends Component {
@@ -37,13 +37,27 @@ class Index extends Component {
 
   componentDidHide() { }
 
+  chooseLocation = () => {
+    Taro.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: res => {
+        const { latitude, longitude } = res
+        this.setState({ latitude, longitude })
+        Taro.chooseLocation({
+          success:res=>{
+            console.info(res)
+          }
+        })
+      }
+    })
+  }
+
   render() {
     const { list } = this.state
     return (
       <View className='page page-order'>
         <View className="page-content">
           我的
-          <Map />
         </View>
         <View className="page-footer">
           {/* 历史订单 > */}

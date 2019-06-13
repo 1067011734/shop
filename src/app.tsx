@@ -26,7 +26,6 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/Extra/Map/index',
       'pages/Extra/Address/index',
       'pages/Order/index',
       'pages/Fetch/index',
@@ -63,6 +62,11 @@ class App extends Component {
           text: "我的"
         },
       ]
+    },
+    permission: {
+      "scope.userLocation": {
+      "desc": "请运行小程序获取你的位置信息"
+    }
     }
   }
 
