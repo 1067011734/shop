@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Input } from '@tarojs/components'
 import XForm from '@components/XForm/Form'
 import XFormItem from '@components/XForm/FormItem'
 import './index.less'
@@ -62,9 +62,16 @@ class Index extends Component {
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
           <XForm>
-            <XFormItem title="收货人"></XFormItem>
+            <XFormItem title="收货人"  >
+              <Input placeholder="请输入收货人"></Input>
+            </XFormItem>
+            <XFormItem title="手机号码"  >
+              <Input placeholder="请输入手机号码" type="number" ></Input>
+            </XFormItem>
+            <XFormItem title="收货地址" border={false} >
+              <Input ></Input>
+            </XFormItem>
           </XForm>
-          我的
         </View>
         <View className="page-footer">
           {/* 历史订单 > */}

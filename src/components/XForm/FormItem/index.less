@@ -4,14 +4,19 @@
 .@{prefix-cls} {
   display: flex;
   flex-direction: row;
+  align-items: center;
   box-sizing: border-box;
   padding: 40rpx 30rpx;
   &-title {
     min-width: 120rpx;
     font-size: 28rpx;
     line-height: 28rpx;
+    color: @font-color-thin;
   }
   &-content {
     flex: 1;
   }
+}
+.@{prefix-cls}-border{
+  border-bottom: 1rpx solid @border-color-thin;
 }
