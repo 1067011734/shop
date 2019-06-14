@@ -1,0 +1,30 @@
+@import "../../../../../style/common.less";
+@prefix-cls: ~"page-address-slide";
+
+.@{prefix-cls} {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background: #ffffff;
+  &-content {
+    width: 100vw;
+    min-width: 100vw;
+  }
+  &-extra {
+    overflow: hidden;
+    width: 130rpx;
+    min-width: 130rpx;
+    height: 106rpx;
+    min-height: 106rpx;
+    background: #ff4a4a;
+    font-size: 28rpx;
+    line-height: 28rpx;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.@{prefix-cls}-animate{
+  transition: .2s;
+}

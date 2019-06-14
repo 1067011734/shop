@@ -1,9 +1,8 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Input } from '@tarojs/components'
-import XForm from '@components/XForm/Form'
-import XFormItem from '@components/XForm/FormItem'
 import XButton from '@components/XButton'
+import Slide from '../_components/Slide'
 import './index.less'
 
 const prefixCls = 'page-address-list';
@@ -75,16 +74,7 @@ class Index extends Component {
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
-          <View className={`${prefixCls}-list`}>
-            <View className={`${prefixCls}-list-item`}>
-              <View className={`${prefixCls}-list-item-content`}>
-                1111
-            </View>
-              <View className={`${prefixCls}-list-item-extra`}>
-                删除
-            </View>
-            </View>
-          </View>
+        <Slide />
         </View>
         <View className="page-footer">
           <XButton type="black" size="big" block onClick={this.handleSubmit}>保存</XButton>
