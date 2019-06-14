@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import classNames from 'classnames';
+import './index.less'
 
 const prefixCls = 'components-Form-Item';
 

@@ -26,7 +26,7 @@ class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '我的地址'
+    navigationBarTitleText: '新增地址'
   }
 
   componentWillMount() { }
@@ -43,6 +43,9 @@ class Index extends Component {
 
   componentDidHide() { }
 
+   /**
+   * 选择收获地址
+   */
   chooseLocation = () => {
     Taro.getLocation({
       type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
@@ -58,6 +61,13 @@ class Index extends Component {
         })
       }
     })
+  }
+
+  /**
+   * 保存提交
+   */
+  handleSubmit =() =>{
+
   }
 
   render() {
@@ -88,7 +98,7 @@ class Index extends Component {
           </XForm>
         </View>
         <View className="page-footer">
-          <XButton type="black" size="big" block>保存</XButton>
+          <XButton type="black" size="big" block onClick={this.handleSubmit}>保存</XButton>
         </View>
       </View>
     )

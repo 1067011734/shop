@@ -26,7 +26,8 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/Extra/Address/index',
+      'pages/Extra/Address/List/index',
+      'pages/Extra/Address/Update/index',
       'pages/Order/index',
       'pages/Fetch/index',
       'pages/My/index',
@@ -34,7 +35,8 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '壹酮说',
+      navigationBarTitleText: '小程序外卖',
+      // navigationBarTitleText: '壹酮说',
       navigationBarTextStyle: 'black'
     },
     tabBar: {
@@ -65,7 +67,7 @@ class App extends Component {
     },
     permission: {
       "scope.userLocation": {
-      "desc": "请运行小程序获取你的位置信息"
+      "desc": "请允许小程序获取你的位置信息"
     }
     }
   }
