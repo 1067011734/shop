@@ -13,10 +13,13 @@ export interface XFormItemProps {
 }
 
 export default class XFormItem extends Component<XFormItemProps> {
+  static defaultProps = {
+    border: true
+  }
 
 
   render() {
-    const { title,border=true } = this.props
+    const { title, border } = this.props
 
     const className = classNames({
       [`${prefixCls}`]: true,
@@ -25,9 +28,11 @@ export default class XFormItem extends Component<XFormItemProps> {
 
     return (
       <View className={className}>
-        <View className={`${prefixCls}-title`}>
-          {title}
-        </View>
+        {title && (
+          <View className={`${prefixCls}-title`}>
+            {title}
+          </View>
+        )}
         <View className={`${prefixCls}-content`}>
           {this.props.children}
         </View>

@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Input } from '@tarojs/components'
+import { View, Input, Switch } from '@tarojs/components'
 import XForm from '@components/XForm/Form'
 import XFormItem from '@components/XForm/FormItem'
 import XButton from '@components/XButton'
@@ -77,27 +77,35 @@ class Index extends Component {
         <View className="page-content">
           <View className="page-content-top">
             <XForm>
-              <XFormItem title="收货人"  >
-                <Input placeholder="请输入收货人"></Input>
+              <XFormItem>
+                <Input placeholder="收货人"></Input>
               </XFormItem>
-              <XFormItem title="手机号码"  >
-                <Input placeholder="请输入手机号码" type="number" ></Input>
+              <XFormItem>
+                <Input placeholder="手机号码" type="number" ></Input>
               </XFormItem>
-              <XFormItem title="收货地址">
+              <XFormItem>
                 <View className={`${prefixCls}-location`} onClick={this.chooseLocation}>
                   <View className={`${prefixCls}-location-content`}>
-                    {address}
+                    {address ? address:
+                    <View className='placeholder'>收货地址</View>
+                  }
                   </View>
-                  <View className={`${prefixCls}-extra`}>
+                  <View className={`${prefixCls}-location-extra`}>
                     选择
                 </View>
                 </View>
               </XFormItem>
-              <XFormItem title="详细地址" border={false}>
-                <Input placeholder="如道路、门牌号、小区、楼栋号等"></Input>
+              <XFormItem border={false}>
+                <Input placeholder="详细地址：如道路、门牌号、小区、楼栋号等"></Input>
               </XFormItem>
             </XForm>
           </View>
+          <XFormItem title="设置为默认地址"  >
+            {/* <Input placeholder="请输入收货人"></Input> */}
+            <View className={`${prefixCls}-switch`}>
+            <Switch checked/>
+            </View>
+          </XFormItem>
         </View>
         <View className="page-footer">
           <XButton type="black" size="big" block onClick={this.handleSubmit}>保存</XButton>
