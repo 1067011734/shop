@@ -103,7 +103,7 @@ class Index extends Component {
           <XFormItem title="设置为默认地址"  >
             {/* <Input placeholder="请输入收货人"></Input> */}
             <View className={`${prefixCls}-switch`}>
-            <Switch checked/>
+            <Switch color="#f8d0b7" checked/>
             </View>
           </XFormItem>
         </View>
