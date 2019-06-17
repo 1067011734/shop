@@ -6,12 +6,8 @@ import './index.less'
 const prefixCls = 'page-address-slide';
 
 export interface SlideProps {
-  // 名字
-  name?: any;
-  // 电话
-  phone?: any;
-  // 地址
-  address?: string;
+  // 数据
+  dataSource?: any;
   // 删除事件
   onDelete?: Function;
   // 编辑事件
@@ -21,9 +17,7 @@ export interface SlideProps {
 export default class Index extends Component<SlideProps> {
 
   static defaultProps = {
-    name: "",
-    phone: '',
-    address: "",
+    dataSource: {},
     onDelete: () => { },
     onEdit: () => { },
   }
@@ -48,8 +42,15 @@ export default class Index extends Component<SlideProps> {
     const query = Taro.createSelectorQuery().in(this.$scope)
     query.select(`.${prefixCls}-delete`)
       .boundingClientRect((rect: any) => {
+        if(!rect){
+          return
+        }
+
         const { width } = rect
-        this.max = width
+
+        if(width){
+          this.max = width
+        }
       })
       .exec()
   }
@@ -102,22 +103,22 @@ export default class Index extends Component<SlideProps> {
    * 编辑地址
   */
   handleEdit = () => {
-    const { name, phone, address,onEdit } = this.props
+    const { dataSource,onEdit } = this.props
 
-    onEdit && onEdit(name, phone, address)
+    onEdit && onEdit(dataSource)
   }
 
   /**
    * 删除地址
   */
   handleDelete = () => {
-    const { name, phone, address,onDelete } = this.props
+    const { dataSource,onDelete } = this.props
 
-    onDelete && onDelete(name, phone, address)
+    onDelete && onDelete(dataSource)
   }
 
   render() {
-    const { name, phone, address } = this.props
+    const { dataSource } = this.props
     const { translateX, animate } = this.state
 
     const wrapClassName = classnames({
@@ -138,14 +139,14 @@ export default class Index extends Component<SlideProps> {
           <View className={`${prefixCls}-content-read`}>
             <View className={`${prefixCls}-content-read-top`}>
               <View className={`${prefixCls}-content-read-top-name`}>
-                {name}
+                {dataSource.name}
               </View>
               <View className={`${prefixCls}-content-read-top-phone`}>
-                {phone}
+                {dataSource.phone}
               </View>
             </View>
             <View className={`${prefixCls}-content-read-bottom`}>
-              {address}
+              {dataSource.address}
             </View>
           </View>
           <View className={`${prefixCls}-content-edit`} onClick={this.handleEdit}>

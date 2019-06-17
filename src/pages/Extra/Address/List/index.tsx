@@ -12,8 +12,7 @@ class Index extends Component {
   state = {
     address: '',
     list: [
-      { title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 1 },
-      { title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 2 },
+      { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
     ]
   }
 
@@ -38,7 +37,16 @@ class Index extends Component {
 
   componentWillUnmount() { }
 
-  componentDidShow() { }
+  componentDidShow() {
+    console.info(222,this)
+    this.setState({ list:[] })
+    setTimeout(() => {
+      this.setState({ list:[
+        { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
+      ] })
+    }, 0);
+
+  }
 
   componentDidHide() { }
 
@@ -68,27 +76,30 @@ class Index extends Component {
    */
   handleSubmit = () => {
     Taro.navigateTo({
-      url:"/pages/Extra/Address/Edit/index"
+      url: "/pages/Extra/Address/Edit/index"
     })
   }
 
   handleAddressEdit = () => {
     Taro.navigateTo({
-      url:"/pages/Extra/Address/Edit/index"
+      url: "/pages/Extra/Address/Edit/index"
     })
   }
 
   render() {
-    const { address } = this.state
+    const { list } = this.state
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
-        <Slide
-          name="张三"
-          phone="17483928445"
-          address="绿城未来park"
-          onEdit={this.handleAddressEdit}
-        />
+          {
+            list.length ? list.map(x => (
+              <Slide
+                dataSource={x}
+                onEdit={this.handleAddressEdit}
+                key={x.id}
+              />
+            )):''
+          }
         </View>
         <View className="page-footer">
           <XButton type="black" size="big" block onClick={this.handleSubmit}>添加地址</XButton>

@@ -67,7 +67,7 @@ class Index extends Component {
    * 保存提交
    */
   handleSubmit =() =>{
-
+   Taro.navigateBack()
   }
 
   render() {
