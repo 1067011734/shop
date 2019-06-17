@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Input } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import XButton from '@components/XButton'
 import Slide from '../_components/Slide'
 import './index.less'
@@ -74,10 +74,14 @@ class Index extends Component {
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
-        <Slide />
+        <Slide
+          name="张三"
+          phone="17483928445"
+          address="绿城未来park"
+        />
         </View>
         <View className="page-footer">
-          <XButton type="black" size="big" block onClick={this.handleSubmit}>保存</XButton>
+          <XButton type="black" size="big" block onClick={this.handleSubmit}>添加地址</XButton>
         </View>
       </View>
     )

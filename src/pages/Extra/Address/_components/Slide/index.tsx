@@ -6,12 +6,12 @@ import './index.less'
 const prefixCls = 'page-address-slide';
 
 export interface CardProps {
-  // 标题
-  title?: any;
-  // 图片地址
-  src?: any;
-  // 类型
-  type?: string;
+  // 名字
+  name?: any;
+  // 电话
+  phone?: any;
+  // 地址
+  address?: string;
 }
 
 class Index extends Component<CardProps> {
@@ -28,6 +28,7 @@ class Index extends Component<CardProps> {
   }
   // px/2=rpx
   max = 130 / 2
+  // 手指触摸动作开始pagex坐标
   touchStartX = 0
   // 上一次touch移动的长度
   moveX = 0
@@ -80,6 +81,7 @@ class Index extends Component<CardProps> {
   }
 
   render() {
+    const { name, phone, address } = this.props
     const { translateX, animate } = this.state
 
     const wrapClassName = classnames({
@@ -97,8 +99,18 @@ class Index extends Component<CardProps> {
         onTouchEnd={this.onTouchEnd}
       >
         <View className={`${prefixCls}-content`}>
-          1111bbbbbbbbbbbbbbbbbbbbbb
+          <View className={`${prefixCls}-content-top`}>
+            <View className={`${prefixCls}-content-top-name`}>
+              {name}
             </View>
+            <View className={`${prefixCls}-content-top-phone`}>
+              {phone}
+            </View>
+          </View>
+          <View className={`${prefixCls}-content-bottom`}>
+            {address}
+          </View>
+        </View>
         <View className={`${prefixCls}-extra`}>
           删除
             </View>
