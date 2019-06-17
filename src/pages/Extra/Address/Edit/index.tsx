@@ -4,18 +4,18 @@ import { View, Input, Switch } from '@tarojs/components'
 import XForm from '@components/XForm/Form'
 import XFormItem from '@components/XForm/FormItem'
 import XButton from '@components/XButton'
+import { phoneReg } from '@utils/regularConfig'
 import './index.less'
 
 const prefixCls = 'page-address';
+console.info(phoneReg)
 
 class Index extends Component {
 
   state = {
     address: '',
-    list: [
-      { title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 1 },
-      { title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 50, time: '15：30', description: '加冰+5分钟气泡', id: 2 },
-    ]
+    phone: "",
+    name: ""
   }
 
   /**
@@ -39,7 +39,19 @@ class Index extends Component {
 
   componentWillUnmount() { }
 
-  componentDidShow() { }
+  componentDidShow() {
+    const { status } = this.$router.params
+
+    if (!status) {
+      return
+    }
+    if (status === 'edit') {
+      Taro.setNavigationBarTitle({
+        title: '修改地址'
+      })
+      return
+    }
+  }
 
   componentDidHide() { }
 
@@ -63,32 +75,54 @@ class Index extends Component {
     })
   }
 
+  handleInput = (e, key) => {
+    const { value } = e.detail
+    this.setState({ [key]: value })
+  }
+
   /**
    * 保存提交
    */
   handleSubmit = () => {
+    const { name, phone } = this.state
+    // if (!name) {
+    //   Taro.showToast({
+    //     title: '请填写姓名',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return
+    // }
+    // if (!phoneReg.test(phone)) {
+    //   Taro.showToast({
+    //     title: '请填写正确的中国大陆地区手机号',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return
+    // }
     Taro.navigateBack()
   }
 
   render() {
-    const { address } = this.state
+    const { address, phone } = this.state
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
           <View className="page-content-top">
             <XForm>
               <XFormItem>
-                <Input placeholder="收货人"></Input>
+                <Input placeholder="收货人" onInput={(e) => { this.handleInput(e, 'name') }}></Input>
               </XFormItem>
               <XFormItem>
-                <Input placeholder="手机号码" type="number" ></Input>
+                <Input placeholder="手机号码" type="number" value={phone} onInput={(e) => { this.handleInput(e, 'phone') }}></Input>
               </XFormItem>
               <XFormItem>
                 <View className={`${prefixCls}-location`} onClick={this.chooseLocation}>
                   <View className={`${prefixCls}-location-content`}>
-                    {address ? address:
-                    <View className='placeholder'>收货地址</View>
-                  }
+                    {address ? address :
+                      <View className='placeholder'>收货地址</View>
+                    }
                   </View>
                   <View className={`${prefixCls}-location-extra`}>
                     选择
@@ -103,7 +137,7 @@ class Index extends Component {
           <XFormItem title="设置为默认地址"  >
             {/* <Input placeholder="请输入收货人"></Input> */}
             <View className={`${prefixCls}-switch`}>
-            <Switch color="#f8d0b7" checked/>
+              <Switch color="#f8d0b7" checked />
             </View>
           </XFormItem>
         </View>

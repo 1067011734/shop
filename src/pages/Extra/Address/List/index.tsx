@@ -77,13 +77,13 @@ class Index extends Component {
    */
   handleSubmit = () => {
     Taro.navigateTo({
-      url: "/pages/Extra/Address/Edit/index"
+      url: "/pages/Extra/Address/Edit/index?status=add"
     })
   }
 
   handleAddressEdit = () => {
     Taro.navigateTo({
-      url: "/pages/Extra/Address/Edit/index"
+      url: "/pages/Extra/Address/Edit/index?status=edit"
     })
   }
 
