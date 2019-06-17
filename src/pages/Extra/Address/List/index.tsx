@@ -41,11 +41,11 @@ class Index extends Component {
   componentDidShow() {
     console.info(222,this)
     this.setState({ list:[] })
-    // setTimeout(() => {
-    //   this.setState({ list:[
-    //     { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
-    //   ] })
-    // }, 0);
+    setTimeout(() => {
+      this.setState({ list:[
+        { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
+      ] })
+    }, 0);
 
   }
 

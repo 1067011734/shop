@@ -43,9 +43,9 @@ class Index extends Component {
 
   componentDidHide() { }
 
-   /**
-   * 选择收获地址
-   */
+  /**
+  * 选择收获地址
+  */
   chooseLocation = () => {
     Taro.getLocation({
       type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
@@ -66,8 +66,8 @@ class Index extends Component {
   /**
    * 保存提交
    */
-  handleSubmit =() =>{
-   Taro.navigateBack()
+  handleSubmit = () => {
+    Taro.navigateBack()
   }
 
   render() {
@@ -75,27 +75,29 @@ class Index extends Component {
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
-          <XForm>
-            <XFormItem title="收货人"  >
-              <Input placeholder="请输入收货人"></Input>
-            </XFormItem>
-            <XFormItem title="手机号码"  >
-              <Input placeholder="请输入手机号码" type="number" ></Input>
-            </XFormItem>
-            <XFormItem title="收货地址">
-              <View className={`${prefixCls}-location`} onClick={this.chooseLocation}>
-                <View className={`${prefixCls}-location-content`}>
-                  {address}
+          <View className="page-content-top">
+            <XForm>
+              <XFormItem title="收货人"  >
+                <Input placeholder="请输入收货人"></Input>
+              </XFormItem>
+              <XFormItem title="手机号码"  >
+                <Input placeholder="请输入手机号码" type="number" ></Input>
+              </XFormItem>
+              <XFormItem title="收货地址">
+                <View className={`${prefixCls}-location`} onClick={this.chooseLocation}>
+                  <View className={`${prefixCls}-location-content`}>
+                    {address}
+                  </View>
+                  <View className={`${prefixCls}-extra`}>
+                    选择
                 </View>
-                <View className={`${prefixCls}-extra`}>
-                  选择
                 </View>
-              </View>
-            </XFormItem>
-            <XFormItem title="详细地址" border={false}>
-              <Input placeholder="如道路、门牌号、小区、楼栋号等"></Input>
-            </XFormItem>
-          </XForm>
+              </XFormItem>
+              <XFormItem title="详细地址" border={false}>
+                <Input placeholder="如道路、门牌号、小区、楼栋号等"></Input>
+              </XFormItem>
+            </XForm>
+          </View>
         </View>
         <View className="page-footer">
           <XButton type="black" size="big" block onClick={this.handleSubmit}>保存</XButton>
