@@ -6,10 +6,12 @@
   flex-direction: row;
   background: #ffffff;
   box-sizing: border-box;
+  margin-top: 20rpx;
   &-content {
     height: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
     justify-content: center;
     box-sizing: border-box;
     width: 100vw;
@@ -17,32 +19,40 @@
     padding-top: 21rpx;
     padding-bottom: 15rpx;
     padding-left: 30rpx;
-    &-top {
+    &-read{
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-bottom: 18rpx;
-      &-name {
-        font-weight: 400;
-        font-size: 28rpx;
-        line-height: 28rpx;
-        color: @font-color-2;
-        padding-right: 18rpx;
+      flex: 1;
+      flex-direction: column;
+      &-top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 18rpx;
+        &-name {
+          font-weight: 400;
+          font-size: 28rpx;
+          line-height: 28rpx;
+          color: @font-color-2;
+          padding-right: 18rpx;
+        }
+        &-phone {
+          font-weight: 400;
+          font-size: 22rpx;
+          line-height: 22rpx;
+          color: @font-color-thin;
+        }
       }
-      &-phone {
+      &-bottom {
+        font-size: 26rpx;
+        line-height: 26rpx;
         font-weight: 400;
-        font-size: 22rpx;
-        line-height: 22rpx;
-        color: @font-color-thin;
       }
     }
-    &-bottom {
-      font-size: 26rpx;
-      line-height: 26rpx;
-      font-weight: 400;
+    &-edit{
+      padding-right: 30rpx;
     }
   }
-  &-extra {
+  &-delete {
     overflow: hidden;
     width: 130rpx;
     min-width: 130rpx;

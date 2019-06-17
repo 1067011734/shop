@@ -47,7 +47,8 @@ class Index extends Component {
   */
   chooseLocation = () => {
     Taro.getLocation({
-      type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
+      // 返回可以用于wx.openLocation的经纬度
+      type: 'gcj02',
       success: res => {
         const { latitude, longitude } = res
         this.setState({ latitude, longitude })
@@ -66,7 +67,15 @@ class Index extends Component {
    * 保存提交
    */
   handleSubmit = () => {
+    Taro.navigateTo({
+      url:"/pages/Extra/Address/Edit/index"
+    })
+  }
 
+  handleAddressEdit = () => {
+    Taro.navigateTo({
+      url:"/pages/Extra/Address/Edit/index"
+    })
   }
 
   render() {
@@ -78,6 +87,7 @@ class Index extends Component {
           name="张三"
           phone="17483928445"
           address="绿城未来park"
+          onEdit={this.handleAddressEdit}
         />
         </View>
         <View className="page-footer">

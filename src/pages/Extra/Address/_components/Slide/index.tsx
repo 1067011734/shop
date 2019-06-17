@@ -5,35 +5,53 @@ import './index.less'
 
 const prefixCls = 'page-address-slide';
 
-export interface CardProps {
+export interface SlideProps {
   // 名字
   name?: any;
   // 电话
   phone?: any;
   // 地址
   address?: string;
+  // 删除事件
+  onDelete?: Function;
+  // 编辑事件
+  onEdit?: Function;
 }
 
-class Index extends Component<CardProps> {
+export default class Index extends Component<SlideProps> {
 
   static defaultProps = {
-    title: "",
-    dataSource: {},
-    operation: "",
+    name: "",
+    phone: '',
+    address: "",
+    onDelete: () => { },
+    onEdit: () => { },
   }
 
   state = {
+    // 元素在水平方形移动的长度，单位为px
     translateX: 0,
     animate: false
   }
-  // px/2=rpx
-  max = 130 / 2
+  // 单位为px;px/2=rpx
+  max = 0
   // 手指触摸动作开始pagex坐标
   touchStartX = 0
   // 上一次touch移动的长度
   moveX = 0
 
   componentDidMount() {
+    this.getMax()
+  }
+
+  getMax = () => {
+    const query = Taro.createSelectorQuery().in(this.$scope)
+    query.select(`.${prefixCls}-delete`)
+      .boundingClientRect((rect: any) => {
+        const { width } = rect
+        this.max = width
+      })
+      .exec()
   }
 
   onTouchStart = (ev) => {
@@ -80,6 +98,24 @@ class Index extends Component<CardProps> {
     this.moveX = x
   }
 
+  /**
+   * 编辑地址
+  */
+  handleEdit = () => {
+    const { name, phone, address,onEdit } = this.props
+
+    onEdit && onEdit(name, phone, address)
+  }
+
+  /**
+   * 删除地址
+  */
+  handleDelete = () => {
+    const { name, phone, address,onDelete } = this.props
+
+    onDelete && onDelete(name, phone, address)
+  }
+
   render() {
     const { name, phone, address } = this.props
     const { translateX, animate } = this.state
@@ -99,24 +135,27 @@ class Index extends Component<CardProps> {
         onTouchEnd={this.onTouchEnd}
       >
         <View className={`${prefixCls}-content`}>
-          <View className={`${prefixCls}-content-top`}>
-            <View className={`${prefixCls}-content-top-name`}>
-              {name}
+          <View className={`${prefixCls}-content-read`}>
+            <View className={`${prefixCls}-content-read-top`}>
+              <View className={`${prefixCls}-content-read-top-name`}>
+                {name}
+              </View>
+              <View className={`${prefixCls}-content-read-top-phone`}>
+                {phone}
+              </View>
             </View>
-            <View className={`${prefixCls}-content-top-phone`}>
-              {phone}
+            <View className={`${prefixCls}-content-read-bottom`}>
+              {address}
             </View>
           </View>
-          <View className={`${prefixCls}-content-bottom`}>
-            {address}
-          </View>
+          <View className={`${prefixCls}-content-edit`} onClick={this.handleEdit}>
+            编辑
         </View>
-        <View className={`${prefixCls}-extra`}>
+        </View>
+        <View className={`${prefixCls}-delete`} onClick={this.handleDelete}>
           删除
             </View>
       </View>
     )
   }
 }
-
-export default Index
