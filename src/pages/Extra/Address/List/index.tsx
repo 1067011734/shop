@@ -4,6 +4,7 @@ import { View } from '@tarojs/components'
 import XButton from '@components/XButton'
 import Slide from '../_components/Slide'
 import Empty from '../_components/Empty'
+import XIcon from '@components/XIcon'
 import './index.less'
 
 const prefixCls = 'page-address-list';
@@ -39,12 +40,14 @@ class Index extends Component {
   componentWillUnmount() { }
 
   componentDidShow() {
-    console.info(222,this)
-    this.setState({ list:[] })
+    console.info(222, this)
+    this.setState({ list: [] })
     setTimeout(() => {
-      this.setState({ list:[
-        { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
-      ] })
+      this.setState({
+        list: [
+          { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
+        ]
+      })
     }, 0);
 
   }
@@ -99,13 +102,20 @@ class Index extends Component {
                 onEdit={this.handleAddressEdit}
                 key={x.id}
               />
-            )):
-            <Empty dataSource={['暂无地址信息','请点击底部按钮添加地址']}>
-            </Empty>
+            )) :
+              <Empty dataSource={['暂无地址信息', '请点击底部按钮添加地址']}>
+              </Empty>
           }
         </View>
         <View className="page-footer">
-          <XButton type="black" size="big" block onClick={this.handleSubmit}>添加地址</XButton>
+          <XButton type="black"
+            size="big"
+            block
+            onClick={this.handleSubmit
+            }>
+            <XIcon type='plus2' size={30} />
+            添加地址
+          </XButton>
         </View>
       </View>
     )

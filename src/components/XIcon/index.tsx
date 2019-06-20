@@ -2,8 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { Image } from '@tarojs/components'
 import hotSrc from '@images/hot.png'
 import plusSrc from '@images/plus.png'
+import plus2Src from '@images/plus-2.png'
 import reduceSrc from '@images/reduce.png'
 import closeSrc from '@images/close.png'
+import editSrc from '@images/edit.png'
 import './index.less';
 
 const prefixCls = 'components-icon';
@@ -11,8 +13,10 @@ const prefixCls = 'components-icon';
 const typeList = {
   hot: hotSrc,
   plus: plusSrc,
+  plus2: plus2Src,
   reduce: reduceSrc,
   close: closeSrc,
+  edit: editSrc
 }
 
 export interface XSwiperProps {
@@ -38,7 +42,7 @@ class App extends Component<XSwiperProps> {
       height = size
     }
 
-    return [width,height]
+    return [width, height]
   }
 
   getGutter = (gutter) => {
@@ -55,7 +59,7 @@ class App extends Component<XSwiperProps> {
   render() {
     const { type, size, gutter } = this.props;
 
-    const [width,height] = this.getSize(size)
+    const [width, height] = this.getSize(size)
 
     const magrinLeft = this.getGutter(gutter);
 

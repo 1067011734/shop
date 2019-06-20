@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Button } from '@tarojs/components'
+import { Button, View } from '@tarojs/components'
 import classNames from 'classnames';
 import './index.less';
 
@@ -18,13 +18,13 @@ export interface buttonProps {
   onClick?: Function
 }
 
- class App extends Component<buttonProps, {}> {
+class App extends Component<buttonProps, {}> {
   static defaultProps = {
     type: String,
   }
 
-  handleClick = () =>{
-    const { onClick} = this.props;
+  handleClick = () => {
+    const { onClick } = this.props;
 
     onClick && onClick()
   }
@@ -32,17 +32,22 @@ export interface buttonProps {
   render() {
     const { type, block, size } = this.props;
 
+    const classWrapName = classNames({
+      [`${prefixCls}-wrap`]: true,
+      [`${prefixCls}-wrap-block`]: block,
+    });
+
     const className = classNames({
       [`${prefixCls}`]: true,
-      [`${prefixCls}-block`]: block,
-      [`${prefixCls}-size-big`]: size==='big',
-      [`${prefixCls}-size-middle`]: size==='middle',
-      [`${prefixCls}-type-black`]: type==='black',
-      // [`${prefixCls}-block`]: Boolean(block),
+      [`${prefixCls}-size-big`]: size === 'big',
+      [`${prefixCls}-size-middle`]: size === 'middle',
+      [`${prefixCls}-type-black`]: type === 'black',
     });
 
     return (
-      <Button className={className} onClick={this.handleClick}>{this.props.children}</Button>
+      <View className={classWrapName}>
+        <Button className={className} onClick={this.handleClick}>{this.props.children}</Button>
+      </View>
     )
   }
 }

@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import classnames from 'classnames'
+import XIcon from '@components/XIcon'
 import './index.less'
 
 const prefixCls = 'page-address-slide';
@@ -150,7 +151,7 @@ export default class Index extends Component<SlideProps> {
             </View>
           </View>
           <View className={`${prefixCls}-content-edit`} onClick={this.handleEdit}>
-            编辑
+            <XIcon type='edit' size={[30,28]} />
         </View>
         </View>
         <View className={`${prefixCls}-delete`} onClick={this.handleDelete}>
