@@ -24,8 +24,10 @@ export interface XSwiperProps {
   type?: any;
   // 大小
   size?: any;
-  // 间隔
-  gutter?: number | boolean
+  // 左边距
+  left?: number | boolean;
+  // 右边距
+  right?: number | boolean;
 }
 
 class App extends Component<XSwiperProps> {
@@ -57,13 +59,16 @@ class App extends Component<XSwiperProps> {
   }
 
   render() {
-    const { type, size, gutter } = this.props;
+    const { type, size, left, right } = this.props;
 
     const [width, height] = this.getSize(size)
 
-    const magrinLeft = this.getGutter(gutter);
+    const magrinLeft = this.getGutter(left);
+    const magrinRight = this.getGutter(right);
 
-    const style = `width: ${width}rpx; height: ${height}rpx;margin-left:${magrinLeft}rpx`
+    const style = `width: ${width}rpx; height: ${height}rpx;
+    margin-left:${magrinLeft}rpx;
+    margin-right:${magrinRight}rpx`
 
     return (
       <Image className={prefixCls} style={style} src={typeList[type]} />

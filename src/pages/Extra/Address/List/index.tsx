@@ -113,7 +113,7 @@ class Index extends Component {
             block
             onClick={this.handleSubmit
             }>
-            <XIcon type='plus2' size={30} />
+            <XIcon type='plus2' size={30} right={17} />
             添加地址
           </XButton>
         </View>

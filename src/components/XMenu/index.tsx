@@ -172,7 +172,7 @@ class App extends Component<XMenuProps, XMenuState> {
                       className={`${prefixCls}-content-list-team`}
                     >
                       <View className={`${prefixCls}-content-list-title`}>
-                        {result.title}<XIcon type='hot' size={[13, 15]} gutter />
+                        {result.title}<XIcon type='hot' size={[13, 15]} left />
                       </View>
                       {
                         result.list && result.list.map(item => (
