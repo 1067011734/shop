@@ -1,20 +1,30 @@
 import { ComponentType } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
+import { observer, inject } from '@tarojs/mobx'
 import { View } from '@tarojs/components'
 import XButton from '@components/XButton'
+import XIcon from '@components/XIcon'
 import Slide from '../_components/Slide'
 import Empty from '../_components/Empty'
-import XIcon from '@components/XIcon'
 import './index.less'
 
 const prefixCls = 'page-address-list';
 
-class Index extends Component {
+
+export interface AddressListProps {
+  // mobx 地址数据
+  addressStore?: any
+}
+
+@inject('addressStore')
+@observer
+
+class Index extends Component<AddressListProps> {
 
   state = {
     address: '',
     list: [
-      { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
+      // { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
     ]
   }
 
@@ -29,7 +39,12 @@ class Index extends Component {
     navigationBarTitleText: '我的地址'
   }
 
-  componentWillMount() { }
+  componentWillMount() {
+    // const { addressStore } = this.props
+    // const list = addressStore.getList()
+
+    // this.setState({ list })
+  }
 
   componentWillReact() {
     console.log('componentWillReact')
@@ -40,16 +55,11 @@ class Index extends Component {
   componentWillUnmount() { }
 
   componentDidShow() {
-    console.info(222, this)
-    this.setState({ list: [] })
-    setTimeout(() => {
-      this.setState({
-        list: [
-          { id: "2", name: '张三', phone: "17483928445", address: "绿城未来park" }
-        ]
-      })
-    }, 0);
 
+    const { addressStore } = this.props
+    const list = addressStore.getList()
+
+    this.setState({ list })
   }
 
   componentDidHide() { }
@@ -84,14 +94,28 @@ class Index extends Component {
     })
   }
 
-  handleAddressEdit = () => {
+  handleAddressEdit = (item) => {
+    const { id } = item
+
     Taro.navigateTo({
-      url: "/pages/Extra/Address/Edit/index?status=edit"
+      url: `/pages/Extra/Address/Edit/index?status=edit&&id=${id}`
     })
   }
 
+  handleAddressDelete = (item) => {
+    const { addressStore } = this.props
+    const { id } = item
+
+    addressStore.deleteItem(id)
+
+    const list = addressStore.getList()
+
+    this.setState({ list })
+  }
+
   render() {
-    const { list } = this.state
+    const { list = {} as any } = this.state
+
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
@@ -100,6 +124,7 @@ class Index extends Component {
               <Slide
                 dataSource={x}
                 onEdit={this.handleAddressEdit}
+                onDelete={this.handleAddressDelete}
                 key={x.id}
               />
             )) :

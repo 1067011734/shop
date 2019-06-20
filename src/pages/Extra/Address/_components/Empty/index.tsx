@@ -25,7 +25,6 @@ export default class Index extends Component<SlideProps> {
 
   render() {
     const { dataSource } = this.props
-    console.info(dataSource)
 
     const wrapClassName = classnames({
       [`${prefixCls}`]: true,

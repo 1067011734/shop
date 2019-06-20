@@ -16,6 +16,8 @@ export const Count = (arry, index = -1, gutter = 0) => {
  * 返回一个随机key
  */
 export const unique = () => {
-  return Math.round(new Date().getTime() + (Math.random() * 1000));
+  const result=  Math.round(new Date().getTime() + (Math.random() * 1000));
+  // id实参为String
+  return String(result)
 }
 
