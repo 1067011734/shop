@@ -52,7 +52,7 @@ class EditAddress extends Component<EditAddressProps> {
   }
 
   componentDidMount() {
-    const { status,id } = this.$router.params
+    const { status, id } = this.$router.params
 
     const { addressStore } = this.props
 
@@ -107,7 +107,7 @@ class EditAddress extends Component<EditAddressProps> {
   handleSubmit = () => {
     const { addressStore } = this.props
     const { id, phone, name, address, addressDetail, isDefaultAddress } = this.state
-    const tipsKey = ['phone', 'name', 'address', 'addressDetail']
+    const tipsKey = ['name', 'phone', 'address', 'addressDetail']
     const tipsTxt = {
       name: "收货人",
       phone: "手机号码",
@@ -142,7 +142,7 @@ class EditAddress extends Component<EditAddressProps> {
       return
     }
 
-    addressStore.saveItem({id, phone, name, address, addressDetail, isDefaultAddress})
+    addressStore.saveItem({ id, phone, name, address, addressDetail, isDefaultAddress })
     Taro.navigateBack()
   }
 

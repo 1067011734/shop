@@ -86,7 +86,14 @@ class Index extends Component {
 
   componentWillUnmount() { }
 
-  componentDidShow() { }
+  componentDidShow() {
+    // 页面显示 默认自取
+    const { switchKey } = this.state
+
+    if(switchKey===2){
+      this.setState({switchKey:1})
+    }
+  }
 
   componentDidHide() { }
 
@@ -104,9 +111,9 @@ class Index extends Component {
    * @param {number} key 切换的开关的标识
   */
   handleXSwitchChange = (key) => {
-    this.setState({ switchKey: key },()=>{
-      key ===2 && Taro.navigateTo({
-        url: '/pages/Extra/Address/index'
+    this.setState({ switchKey: key }, () => {
+      key === 2 && Taro.navigateTo({
+        url: '/pages/Extra/Address/List/index'
       })
     })
   }
