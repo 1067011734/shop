@@ -29,7 +29,7 @@ class EditAddress extends Component<EditAddressProps> {
     // 收货详细地址
     addressDetail: '',
     // 默认地址
-    defaultAddress: false,
+    isDefaultAddress: false,
     // 唯一编码
     id: null
   }
@@ -56,10 +56,10 @@ class EditAddress extends Component<EditAddressProps> {
 
     const { addressStore } = this.props
 
-    const { phone, name, address, addressDetail, defaultAddress } = addressStore.getItem(id)
+    const { phone, name, address, addressDetail, isDefaultAddress } = addressStore.getItem(id)
 
     this.setState({
-      phone, name, address, addressDetail, defaultAddress, id
+      phone, name, address, addressDetail, isDefaultAddress, id
     })
 
     if (!status) {
@@ -106,7 +106,7 @@ class EditAddress extends Component<EditAddressProps> {
    */
   handleSubmit = () => {
     const { addressStore } = this.props
-    const { id, phone, name, address, addressDetail, defaultAddress } = this.state
+    const { id, phone, name, address, addressDetail, isDefaultAddress } = this.state
     const tipsKey = ['phone', 'name', 'address', 'addressDetail']
     const tipsTxt = {
       name: "收货人",
@@ -142,12 +142,12 @@ class EditAddress extends Component<EditAddressProps> {
       return
     }
 
-    addressStore.saveItem({id, phone, name, address, addressDetail, defaultAddress})
+    addressStore.saveItem({id, phone, name, address, addressDetail, isDefaultAddress})
     Taro.navigateBack()
   }
 
   render() {
-    const { phone, name, address, addressDetail, defaultAddress } = this.state
+    const { phone, name, address, addressDetail, isDefaultAddress } = this.state
     return (
       <View className={`page ${prefixCls}`}>
         <View className="page-content">
@@ -178,7 +178,7 @@ class EditAddress extends Component<EditAddressProps> {
           </View>
           <XFormItem title="设置为默认地址"  >
             <View className={`${prefixCls}-switch`}>
-              <Switch color="#f8d0b7" checked={defaultAddress} onChange={(e) => { this.handleChange(e, 'defaultAddress') }} />
+              <Switch color="#f8d0b7" checked={isDefaultAddress} onChange={(e) => { this.handleChange(e, 'isDefaultAddress') }} />
             </View>
           </XFormItem>
         </View>

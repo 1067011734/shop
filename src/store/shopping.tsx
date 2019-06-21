@@ -38,7 +38,7 @@ const shoppingStore = observable({
       this.data = [...result]
       return
     }
-    // 若数组已存在，但count不为0，则移除
+    // 若数组已存在，但count不为0，则替换
     const result = { ...data[findIndex], ...item }
     this.data[findIndex] = result
   }

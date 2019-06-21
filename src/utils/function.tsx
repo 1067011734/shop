@@ -14,10 +14,11 @@ export const Count = (arry, index = -1, gutter = 0) => {
 
 /**
  * 返回一个随机key
+ * @return {string} id
  */
 export const unique = () => {
   const result=  Math.round(new Date().getTime() + (Math.random() * 1000));
-  // id实参为String
+  //  mobx 传参数 Number to String
   return String(result)
 }
 

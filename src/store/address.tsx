@@ -20,9 +20,16 @@ const shoppingStore = observable({
 
     const { data } = this
 
-    let { id } = item
+    let { id, isDefaultAddress } = item
 
     const findIndex = data.findIndex(x => x.id === id)
+
+    // 默认地址至允许一个
+    if (isDefaultAddress) {
+      data.forEach(item => {
+        item.isDefaultAddress = false
+      });
+    }
 
     // 若不存在,则添加进数组
     if (findIndex === -1) {
@@ -33,7 +40,7 @@ const shoppingStore = observable({
       this.data = [...data, item]
       return
     }
-    data[findIndex]=item
+    data[findIndex] = item
     this.data = [...data]
   },
   getList() {

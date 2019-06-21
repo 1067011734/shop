@@ -43,13 +43,13 @@ export default class Index extends Component<SlideProps> {
     const query = Taro.createSelectorQuery().in(this.$scope)
     query.select(`.${prefixCls}-delete`)
       .boundingClientRect((rect: any) => {
-        if(!rect){
+        if (!rect) {
           return
         }
 
         const { width } = rect
 
-        if(width){
+        if (width) {
           this.max = width
         }
       })
@@ -104,7 +104,7 @@ export default class Index extends Component<SlideProps> {
    * 编辑地址
   */
   handleEdit = () => {
-    const { dataSource,onEdit } = this.props
+    const { dataSource, onEdit } = this.props
 
     onEdit && onEdit(dataSource)
   }
@@ -113,7 +113,7 @@ export default class Index extends Component<SlideProps> {
    * 删除地址
   */
   handleDelete = () => {
-    const { dataSource,onDelete } = this.props
+    const { dataSource, onDelete } = this.props
 
     onDelete && onDelete(dataSource)
   }
@@ -121,10 +121,13 @@ export default class Index extends Component<SlideProps> {
   render() {
     const { dataSource } = this.props
     const { translateX, animate } = this.state
-
     const wrapClassName = classnames({
       [`${prefixCls}`]: true,
       [`${prefixCls}-animate`]: animate,
+    })
+    const defaultIconClassName = classnames({
+      [`${prefixCls}-content-read-bottom-default-icon`]: true,
+      [`none`]: !Boolean(dataSource.isDefaultAddress),
     })
     const style = `transform: translateX(${translateX * 2}rpx)`
 
@@ -147,12 +150,15 @@ export default class Index extends Component<SlideProps> {
               </View>
             </View>
             <View className={`${prefixCls}-content-read-bottom`}>
-              {dataSource.address}
+              <View className={defaultIconClassName}>
+                默认
+            </View>
+              {dataSource.address}{dataSource.addressDetail}
             </View>
           </View>
           <View className={`${prefixCls}-content-edit`} onClick={this.handleEdit}>
-            <XIcon type='edit' size={[30,28]} />
-        </View>
+            <XIcon type='edit' size={[30, 28]} />
+          </View>
         </View>
         <View className={`${prefixCls}-delete`} onClick={this.handleDelete}>
           删除
