@@ -59,7 +59,9 @@ class Index extends Component<AddressListProps> {
     const { addressStore } = this.props
     const list = addressStore.getList()
 
-    this.setState({ list })
+    this.setState({ list: [] }, () => {
+      this.setState({ list })
+    })
   }
 
   componentDidHide() { }
@@ -110,7 +112,9 @@ class Index extends Component<AddressListProps> {
 
     const list = addressStore.getList()
 
-    this.setState({ list })
+    this.setState({ list: [] }, () => {
+      this.setState({ list })
+    })
   }
 
   render() {
