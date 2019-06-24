@@ -10,12 +10,17 @@ import './index.less';
 const prefixCls = 'components-menu';
 
 export interface XMenuProps {
-  // 数据源
+  // 菜单侧边栏数据源
   siderData?: Array<any>;
+  // 菜单主体列表数据
+  contentData: any;
+  // 饮品需求数据源
+  requireData?:Object;
+  // 饮品logo地址
   logoSrc?: string;
-  dataSource: any;
+  // 点击查看饮品详细
   onClick?: Function;
-  // 高度
+  // 菜单高度
   height?: string;
   // 轮播图片地址
   swiperSrc?: Array<any>;
@@ -118,7 +123,7 @@ class App extends Component<XMenuProps, XMenuState> {
   }
 
   render() {
-    const { dataSource, siderData, logoSrc, height, swiperSrc } = this.props;
+    const { contentData, siderData, logoSrc, height, swiperSrc, requireData } = this.props;
     const { siderActvieKey, contentActvieKey, isOpened, detailData } = this.state;
 
     const scrollStyle = {
@@ -164,7 +169,7 @@ class App extends Component<XMenuProps, XMenuState> {
             </View>
             <View className={`${prefixCls}-content-list`}>
               {
-                dataSource && dataSource.map((result, index) =>
+                contentData && contentData.map((result, index) =>
                   (
                     <View
                       key={result.id}
@@ -191,6 +196,7 @@ class App extends Component<XMenuProps, XMenuState> {
           </View>
         </ScrollView>
         <DetailModal
+          requireData={requireData}
           dataSource={detailData}
           isOpened={isOpened}
           onClose={this.handleCloseModal}

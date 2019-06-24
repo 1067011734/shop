@@ -18,6 +18,8 @@ export interface CardProps {
   onClose?: Function
   // mobx 购物数据
   shoppingStore?: any
+  // 饮品需求数据源
+  requireData?:Object;
 }
 
 @inject('shoppingStore')
@@ -112,12 +114,13 @@ class Index extends Component<CardProps> {
   }
 
   render() {
-    const { dataSource = {}, isOpened, shoppingStore } = this.props
+    const { dataSource = {}, isOpened, shoppingStore, requireData } = this.props
     const { specsData, specsActvieKey, temperatureData, temperatureActvieKey, count } = this.state
     // 需求描述
     const requestDescription = [specsActvieKey, temperatureActvieKey].map(x => x.value).filter(Boolean).join(',')
 
     const xRollingCount = count || shoppingStore.getItem(dataSource).count
+    console.info(requireData)
     return (
       <XModal
         width={'calc(100vw - 60rpx)'}

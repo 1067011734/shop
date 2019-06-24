@@ -4,10 +4,20 @@ import XMenu from '@components/XMenu'
 import './index.less'
 
 export interface IndexProps {
-  dataSource?: any
+  dataSource: {
+    siderData?: any,
+    swiperSrc?: any,
+    contentData?: any,
+    requireData?: any,
+    logoSrc?: any,
+  }
 }
 
 class Index extends Component<IndexProps> {
+
+  static defaultProps = {
+    dataSource: { siderData: [], swiperSrc: [], contentData: [], requireData: {}, logoSrc: "" }
+  }
 
   state = {
   }
@@ -23,8 +33,8 @@ class Index extends Component<IndexProps> {
   componentDidHide() { }
 
   render() {
-    const { dataSource={} } = this.props
-    const { siderData = [], swiperSrc=[], contentData = [], logoSrc="" } = dataSource
+    const { dataSource } = this.props
+    const { siderData, swiperSrc, contentData, requireData, logoSrc } = dataSource
     return (
       <View className="page-content-drink">
         <XMenu
@@ -32,7 +42,8 @@ class Index extends Component<IndexProps> {
           siderData={siderData}
           logoSrc={logoSrc}
           swiperSrc={swiperSrc}
-          dataSource={contentData}
+          contentData={contentData}
+          requireData={requireData}
         />
       </View>
     )
