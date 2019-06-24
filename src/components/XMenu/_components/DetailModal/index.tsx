@@ -9,7 +9,7 @@ import './index.less'
 
 const prefixCls = 'components-menu-modal-detail';
 
-export interface CardProps {
+export interface MenuProps {
   // 数据源
   dataSource?: any;
   // 是否打开/显示
@@ -24,7 +24,7 @@ export interface CardProps {
 
 @inject('shoppingStore')
 @observer
-class Index extends Component<CardProps> {
+class Index extends Component<MenuProps> {
 
   static defaultProps = {
     requireData: [],
@@ -32,8 +32,9 @@ class Index extends Component<CardProps> {
   }
 
   state = {
-    // 点餐数量
+    // 点餐数量,弹窗里至少1杯
     count: 0,
+    // 饮品详情弹窗是否打开
     isOpened: null,
     // 选中的需求
     selectedRequired: {}
@@ -47,10 +48,25 @@ class Index extends Component<CardProps> {
     if (nextProps.isOpened !== prevState.isOpened) {
       return ({
         isOpened: nextProps.isOpened,
-        count: 0
+        count: 0,
+        selectedRequired: {}
       })
     }
     return null
+  }
+
+  componentDidUpdate(prevProps) {
+    const { dataSource, isOpened, shoppingStore } = this.props
+    // 在弹窗打开时,获取数据
+    if (!prevProps.isOpened && isOpened) {
+      const detailData = shoppingStore.getItem(dataSource)
+      const { selectedRequired = {}, count } = detailData
+
+      this.setState({
+        selectedRequired: selectedRequired,
+        count: count || 1
+      })
+    }
   }
 
 
@@ -96,10 +112,10 @@ class Index extends Component<CardProps> {
   */
   handleShopping = () => {
     const { onClose, dataSource, shoppingStore } = this.props
-    const { count } = this.state
+    const { count, selectedRequired } = this.state
     const { id } = dataSource
 
-    const data = { id, count }
+    const data = { id, count, selectedRequired }
 
     shoppingStore.saveItem(data)
 
@@ -136,12 +152,9 @@ class Index extends Component<CardProps> {
   }
 
   render() {
-    const { dataSource = {}, isOpened, shoppingStore } = this.props
+    const { dataSource = {}, isOpened } = this.props
     const { count, selectedRequired } = this.state
 
-    const detailData = shoppingStore.getItem(dataSource)
-
-    const xRollingCount = count || detailData.count
     const requireList = this.getRequireList()
     const need = this.getNeeds(requireList).filter(Boolean).join(',')
 
@@ -160,7 +173,8 @@ class Index extends Component<CardProps> {
             <View className={`${prefixCls}-body-name`}>
               {dataSource.name}
             </View>
-            {requireList && requireList.length && requireList.map(item => (
+            {/* requireList不是state,关闭时并不会清空,打开时key相同<Item/>并不会更新，必须借助isOpened*/}
+            {isOpened && requireList && requireList.length && requireList.map(item => (
               <Item
                 title={item.title}
                 dataSource={item.list}
@@ -192,7 +206,7 @@ class Index extends Component<CardProps> {
                 <XRolling
                   onChange={this.handleRollingChange}
                   min={1}
-                  count={xRollingCount}
+                  count={count}
                 />
               </View>
             </View>

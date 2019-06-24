@@ -39,24 +39,24 @@ class Index extends Component {
       contentData: [
         {
           id: 1, title: '今日推荐', list: [
-            { id: 1, name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', requireType: [1, 2], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
+            { id: 1, name: "蔷薇红梅气泡", count: 2, price: 50, requireType: [1, 2], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
           ]
         },
         {
           id: 2, title: 'YITO森林', list: [
-            { id: 2, title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 20, time: '15：30', description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
-            { id: 3, title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, time: '15：30', description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
-            { id: 4, title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 20, time: '15：30', description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
+            { id: 2, title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 20, requireType: [1], description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
+            { id: 3, title: '正在配送', name: "蔷薇红梅气泡", count: 2, price: 50, requireType: [1,2,3], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
+            { id: 4, title: '制作中', name: "蓝玫瑰红梅气泡", count: 2, price: 20, requireType: [1, 2], description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
           ]
         },
         {
           id: 2, title: '水母家族', list: [
-            { id: 2, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 30, time: '15：30', description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
-            { id: 3, title: '正在配送', name: "蔷薇红梅气泡2", count: 2, price: 40, time: '15：30', description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
-            { id: 4, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 35, time: '15：30', description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
-            { id: 2, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 30, time: '15：30', description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
-            { id: 3, title: '正在配送', name: "蔷薇红梅气泡2", count: 2, price: 40, time: '15：30', description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
-            { id: 4, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 35, time: '15：30', description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
+            { id: 2, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 30, requireType: [], description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
+            { id: 3, title: '正在配送', name: "蔷薇红梅气泡2", count: 2, price: 40, requireType: [1], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
+            { id: 4, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 35, requireType: [2], description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
+            { id: 2, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 30, requireType: [3], description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
+            { id: 3, title: '正在配送', name: "蔷薇红梅气泡2", count: 2, price: 40, requireType: [1, 3], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
+            { id: 4, title: '制作中', name: "蓝玫瑰红梅气泡2", count: 2, price: 35, requireType: [2,3], description: '加冰+5分钟气泡', src: 'http://img1.imgtn.bdimg.com/it/u=4145206504,1491730429&fm=26&gp=0.jpg' },
           ]
         }
       ],
@@ -75,6 +75,16 @@ class Index extends Component {
             { value: 4, label: '去冰' },
             { value: 5, label: '多冰' },
             { value: 6, label: '不加冰' },
+          ]
+        },
+        {
+          type: 3, field: 'sugar', title: "糖度", list: [
+            { value: 1, label: '正常糖(推荐)' },
+            { value: 2, label: '少糖' },
+            { value: 3, label: '少少糖' },
+            { value: 4, label: '去糖' },
+            { value: 5, label: '多糖' },
+            { value: 6, label: '不加糖' },
           ]
         }
       ]

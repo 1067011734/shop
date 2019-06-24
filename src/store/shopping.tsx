@@ -15,7 +15,7 @@ const shoppingStore = observable({
     if (findIndex === -1) {
       return {}
     }
-    return data[findIndex]
+    return {...data[findIndex]}
   },
   saveItem(item = {} as any) {
     if (!Object.keys(item).length) {
