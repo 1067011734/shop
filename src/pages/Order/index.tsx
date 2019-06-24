@@ -16,7 +16,7 @@ class Index extends Component {
   state = {
     tabsKey: 1,
     switchKey: 1,
-    // 模态框 显示/隐藏
+    // 饮品/套餐模态框 显示/隐藏
     isOpened: false,
     dataSource: {
       siderData: [
@@ -149,7 +149,7 @@ class Index extends Component {
   /**
    * 切换标签页
    * @param key 切换的开关的标识
-   * @param boolean 是否关闭模态框
+   * @param boolean 是否关闭 自取/外卖 模态框
   */
   handleXTabsClick = (tabsKey, boolean) => {
     const { isOpened } = this.state
