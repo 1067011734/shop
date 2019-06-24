@@ -36,11 +36,11 @@ class Index extends Component<ItemProps> {
             {
               dataSource && dataSource.map(item => (
                 <View
-                  className={`${prefixCls}-content-item ${activeKey === item.type ? `${prefixCls}-content-item-active` : ''}`}
+                  className={`${prefixCls}-content-item  ${activeKey === item.value ? `${prefixCls}-content-item-active` : ''}`}
                   onClick={()=>{this.handleClick(item)}}
-                  key={item.id}
+                  key={item.value}
                 >
-                  {item.value}
+                  {item.label}
                 </View>
               ))
             }

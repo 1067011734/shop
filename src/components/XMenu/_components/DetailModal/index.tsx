@@ -19,35 +19,24 @@ export interface CardProps {
   // mobx 购物数据
   shoppingStore?: any
   // 饮品需求数据源
-  requireData?:Object;
+  requireData?: any;
 }
 
 @inject('shoppingStore')
 @observer
 class Index extends Component<CardProps> {
 
+  static defaultProps = {
+    requireData: [],
+    dataSource: {}
+  }
+
   state = {
-    // 规格类型
-    specsData: [
-      { id: 1, value: '三分钟气泡', type: 2 },
-      { id: 2, value: '五分钟气泡', type: 3 },
-    ],
-    // 选中的规格标识
-    specsActvieKey: { value: '', type: null },
-    // 温度类型
-    temperatureData: [
-      { id: 1, value: '正常冰(推荐)', type: 2 },
-      { id: 2, value: '少冰', type: 3 },
-      { id: 3, value: '少少冰', type: 4 },
-      { id: 4, value: '去冰', type: 5 },
-      { id: 5, value: '多冰', type: 6 },
-      { id: 6, value: '不加冰', type: 7 },
-    ],
-    // 选中的温度标识
-    temperatureActvieKey: { value: '', type: null },
     // 点餐数量
     count: 0,
-    isOpened: null
+    isOpened: null,
+    // 选中的需求
+    selectedRequired: {}
   }
 
   componentDidMount() {
@@ -59,37 +48,41 @@ class Index extends Component<CardProps> {
       return ({
         isOpened: nextProps.isOpened,
         count: 0
-       })
+      })
     }
     return null
   }
 
 
+  /**
+  * 改变饮料杯数触发事件
+  * @param item 被选钟规格的数据
+  */
   handleRollingChange = (count) => {
     this.setState({ count })
   }
 
-  /**
-   * 规格
-   * @params item 被选钟规格的数据
-  */
-  handleSpecsClick = (item) => {
-    const { type, value } = item
-    this.setState({ specsActvieKey: { type, value } })
-  }
 
   /**
-   * 规格
-   * @params item 被选钟规格的数据
+    * 选择饮品需求点击触发
+    * @param { String} field 该需求的标示
+    * @param { Object } item  该需求的详细数据
   */
-  handleTemperatureClick = (item) => {
-    const { type, value } = item
-    this.setState({ temperatureActvieKey: { type, value } })
+  handleRequiredClick = (field, item) => {
+    const { selectedRequired } = this.state
+    const { label, value } = item
+
+    this.setState({
+      selectedRequired: {
+        ...selectedRequired,
+        [field]: { label, value }
+      }
+    })
   }
 
   /**
    * 关闭modal
-   * @params item 被选钟规格的数据
+   * @param item 被选钟规格的数据
   */
   handleCloseModal = () => {
     const { onClose } = this.props
@@ -99,7 +92,7 @@ class Index extends Component<CardProps> {
 
   /**
    * 加入购物车
-   * @params item 被选钟规格的数据
+   * @param item 被选钟规格的数据
   */
   handleShopping = () => {
     const { onClose, dataSource, shoppingStore } = this.props
@@ -113,14 +106,45 @@ class Index extends Component<CardProps> {
     onClose && onClose({ isOpened: false })
   }
 
-  render() {
-    const { dataSource = {}, isOpened, shoppingStore, requireData } = this.props
-    const { specsData, specsActvieKey, temperatureData, temperatureActvieKey, count } = this.state
-    // 需求描述
-    const requestDescription = [specsActvieKey, temperatureActvieKey].map(x => x.value).filter(Boolean).join(',')
+  /**
+  * 获得该饮品的需求选项列表
+  */
+  getRequireList = () => {
+    const { requireData, dataSource } = this.props
 
-    const xRollingCount = count || shoppingStore.getItem(dataSource).count
-    console.info(requireData)
+    if (!requireData.length || !Object.keys(dataSource).length) {
+      return []
+    }
+
+    const { requireType } = dataSource
+
+
+    return requireData.filter(item => requireType.includes(item.type))
+  }
+
+  /**
+   * 总结用户的需求
+   */
+  getNeeds = (list = [] as any) => {
+    if (!list.length) {
+      return []
+    }
+
+    const { selectedRequired } = this.state
+
+    return list.map(item => selectedRequired[item.field] && selectedRequired[item.field].label)
+  }
+
+  render() {
+    const { dataSource = {}, isOpened, shoppingStore } = this.props
+    const { count, selectedRequired } = this.state
+
+    const detailData = shoppingStore.getItem(dataSource)
+
+    const xRollingCount = count || detailData.count
+    const requireList = this.getRequireList()
+    const need = this.getNeeds(requireList).filter(Boolean).join(',')
+
     return (
       <XModal
         width={'calc(100vw - 60rpx)'}
@@ -136,18 +160,15 @@ class Index extends Component<CardProps> {
             <View className={`${prefixCls}-body-name`}>
               {dataSource.name}
             </View>
-            <Item
-              title="规格"
-              dataSource={specsData}
-              activeKey={specsActvieKey.type}
-              onClick={this.handleSpecsClick}
-            />
-            <Item
-              title="温度"
-              dataSource={temperatureData}
-              activeKey={temperatureActvieKey.type}
-              onClick={this.handleTemperatureClick}
-            />
+            {requireList && requireList.length && requireList.map(item => (
+              <Item
+                title={item.title}
+                dataSource={item.list}
+                key={item.type}
+                activeKey={selectedRequired[item.field] && selectedRequired[item.field].value}
+                onClick={(data) => { this.handleRequiredClick(item.field, data) }}
+              />
+            ))}
             <View className={`${prefixCls}-body-description`}>
               <View className={`${prefixCls}-body-description-title`}>
                 饮品描述
@@ -164,7 +185,7 @@ class Index extends Component<CardProps> {
                   ￥ {dataSource.price}
                 </View>
                 <View className={`${prefixCls}-footer-calc-content-description`}>
-                  {requestDescription}
+                  {need}
                 </View>
               </View>
               <View className={`${prefixCls}-footer-calc-plus`}>

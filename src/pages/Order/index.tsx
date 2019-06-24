@@ -62,13 +62,13 @@ class Index extends Component {
       ],
       requireData: [
         {
-          type: 1, field: 'space', list: [
+          type: 1, field: 'space', title: "规格", list: [
             { value: 1, label: '三分钟气泡' },
             { value: 2, label: '五分钟气泡' },
           ]
         },
         {
-          type: 2, field: 'temperature', list: [
+          type: 2, field: 'temperature', title: "温度", list: [
             { value: 1, label: '正常冰(推荐)' },
             { value: 2, label: '少冰' },
             { value: 3, label: '少少冰' },
