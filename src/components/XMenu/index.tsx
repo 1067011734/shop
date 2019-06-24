@@ -9,8 +9,6 @@ import './index.less';
 
 const prefixCls = 'components-menu';
 
-let ScrollContenttimer = null as any
-
 export interface XMenuProps {
   // 菜单侧边栏数据源
   siderData?: Array<any>;
@@ -106,33 +104,27 @@ class App extends Component<XMenuProps, XMenuState> {
       // 节流，是否第一次查询
       let firstTime = null as any
 
-      if (ScrollContenttimer) {
+      if (firstTime) {
         return false
       }
-      ScrollContenttimer = setTimeout(() => {
-        if(firstTime){
-          return false
-        }
 
-        // 应该查询1次，实际查询2次
-        query.select(`.${prefixCls}-content-header`)
-          .boundingClientRect((rect: any) => {
-            if(firstTime){
-              return false
-            }
-            firstTime = true
-            const contentTop = rect.height
-            query.selectAll(`.${prefixCls}-content-list-team`)
-              .boundingClientRect((rects: any) => {
-                const result = rects.map(x => x.height).map((_x, y, z) => Count(z, y, contentTop))
-                clearTimeout(ScrollContenttimer)
-                ScrollContenttimer = null
-                res(result)
-              })
-              .exec()
-          })
-          .exec()
-      }, 0);
+      // 应该查询1次，实际查询2次
+      query.select(`.${prefixCls}-content-header`)
+        .boundingClientRect((rect: any) => {
+          if (firstTime) {
+            return false
+          }
+          firstTime = true
+          const contentTop = rect.height
+          query.selectAll(`.${prefixCls}-content-list-team`)
+            .boundingClientRect((rects: any) => {
+              const result = rects.map(x => x.height).map((_x, y, z) => Count(z, y, contentTop))
+
+              res(result)
+            })
+            .exec()
+        })
+        .exec()
     })
   }
 
