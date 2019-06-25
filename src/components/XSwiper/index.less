@@ -2,9 +2,14 @@
 @prefix-cls: ~"components-swiper";
 
 .@{prefix-cls} {
+  /* 兼容 */
+  width: 100%;
   position: relative;
+  /* 兼容 */
   swiper{
-    height: 280rpx;
+    image{
+      height: 280rpx;
+    }
   }
   &-doc {
     position: absolute;
