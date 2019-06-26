@@ -2,7 +2,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import classnames from 'classnames'
 import XIcon from '@components/XIcon'
-import dom from '@utils/dom'
 import './index.less'
 
 const prefixCls = 'page-address-slide';
@@ -42,17 +41,19 @@ export default class Index extends Component<SlideProps> {
 
   getMax = () => {
     const query = Taro.createSelectorQuery().in(this.$scope)
-    dom.getDomByQuery(query.select(`.${prefixCls}-delete`)).then((rect: any) => {
-        if (!rect) {
-          return
-        }
+    query.select(`.${prefixCls}-delete`).boundingClientRect().exec((rect: any) => {
+      const [data] = rect
 
-        const { width } = rect
+      if (!data) {
+        return
+      }
 
-        if (width) {
-          this.max = width
-        }
-      })
+      const { width } = data
+
+      if (width) {
+        this.max = width
+      }
+    })
   }
 
   onTouchStart = (ev) => {

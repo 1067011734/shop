@@ -10,7 +10,8 @@ export interface IndexProps {
     contentData?: any,
     requireData?: any,
     logoSrc?: any,
-  }
+  },
+  height?: any,
 }
 
 class Index extends Component<IndexProps> {
@@ -33,12 +34,12 @@ class Index extends Component<IndexProps> {
   componentDidHide() { }
 
   render() {
-    const { dataSource } = this.props
+    const { dataSource,height } = this.props
     const { siderData, swiperSrc, contentData, requireData, logoSrc } = dataSource
     return (
       <View className="page-content-drink">
         <XMenu
-          height={'calc(100vh - 92rpx - 56rpx)'}
+          height={height}
           siderData={siderData}
           logoSrc={logoSrc}
           swiperSrc={swiperSrc}

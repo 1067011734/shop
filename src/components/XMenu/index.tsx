@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, ScrollView, Image } from '@tarojs/components';
 import { Count } from '@utils/function';
-import dom from '@utils/dom';
 import XSwiper from '@components/XSwiper';
 import XIcon from '@components/XIcon';
 import Card from './_components/Card';
@@ -99,10 +98,6 @@ class App extends Component<XMenuProps, XMenuState> {
    *  */
   cacleScrollContent() {
     const query = Taro.createSelectorQuery().in(this.$scope)
-    // query.selectAll(`.${prefixCls}-content-list-team`).boundingClientRect().exec((ret) => {
-    //   // console.log(JSON.stringify(ret, null, 2));
-    //   console.info(ret)
-    // })
 
     return new Promise(res => {
       // 节流，是否第一次查询
@@ -111,39 +106,17 @@ class App extends Component<XMenuProps, XMenuState> {
       if (firstTime) {
         return false
       }
-
-      // 应该查询1次，实际查询2次
-      dom.getDomByQuery(query.select(`.${prefixCls}-content-header`)).then((rect: any)=>{
-        if (firstTime) {
-          return false
-        }
+      query.select(`.${prefixCls}-content-header`).boundingClientRect()
+      query.selectAll(`.${prefixCls}-content-list-team`).boundingClientRect()
+      query.exec((rects: any) => {
         firstTime = true
-        const contentTop = rect.height
-        // console.info(rect,contentTop)
-        dom.getDomByQuery(query.selectAll(`.${prefixCls}-content-list-team`))
-          .then((rects: any) => {
 
-            const result = rects.map(x => x.height).map((_x, y, z) => Count(z, y, contentTop))
-            // console.info(rects,'rects',result)
-            res(result)
-          })
+        const [header, listData] = rects
+        const contentTop = header.height
+        const result = listData.map(x => x.height).map((_x, y, z) => Count(z, y, contentTop))
+
+        res(result)
       })
-      // query.select(`.${prefixCls}-content-header`)
-      //   .boundingClientRect((rect: any) => {
-      //     if (firstTime) {
-      //       return false
-      //     }
-      //     firstTime = true
-      //     const contentTop = rect.height
-      //     query.selectAll(`.${prefixCls}-content-list-team`)
-      //       .boundingClientRect((rects: any) => {
-      //         const result = rects.map(x => x.height).map((_x, y, z) => Count(z, y, contentTop))
-
-      //         res(result)
-      //       })
-      //       .exec()
-      //   })
-      //   .exec()
     })
   }
 
