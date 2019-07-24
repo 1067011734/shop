@@ -71,7 +71,7 @@ const config = {
     }
   },
   h5: {
-    publicPath: '/',
+    publicPath: './',
     staticDirectory: 'static',
     module: {
       postcss: {
@@ -93,6 +93,9 @@ const config = {
           }
         }
       }
+    },
+    router: {
+      mode: 'hash' // 或者是 'browser'
     }
   },
   alias: {
