@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { observer, inject } from '@tarojs/mobx'
-import { View, Image } from '@tarojs/components'
+import { View, Image, ScrollView } from '@tarojs/components'
 import XRolling from '@components/XRolling'
 import XModal from '@components/XModal'
 import XButton from '@components/XButton'
@@ -169,7 +169,10 @@ class Index extends Component<MenuProps> {
           <View className={`${prefixCls}-header`}>
             <Image src={dataSource.src} mode="scaleToFill" />
           </View>
-          <View className={`${prefixCls}-body`}>
+          <ScrollView
+            scrollY
+            className={`${prefixCls}-body`}
+          >
             <View className={`${prefixCls}-body-name`}>
               {dataSource.name}
             </View>
@@ -191,7 +194,10 @@ class Index extends Component<MenuProps> {
                 {dataSource.description}
               </View>
             </View>
-          </View>
+
+          </ScrollView>
+          {/* <View className={`${prefixCls}-body`}>
+            </View> */}
           <View className={`${prefixCls}-footer`}>
             <View className={`${prefixCls}-footer-calc`}>
               <View className={`${prefixCls}-footer-calc-content`}>
