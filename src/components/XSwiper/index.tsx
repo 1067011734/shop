@@ -31,7 +31,7 @@ class App extends Component<XSwiperProps> {
         <Swiper
           circular
           onChange={this.handleChange}
-          autoplay
+          // autoplay
         >
           {
             dataSource && dataSource.map((src, index) => (
@@ -45,7 +45,7 @@ class App extends Component<XSwiperProps> {
         </Swiper>
         <View className={`${prefixCls}-doc`}>
           {
-            dataSource && dataSource.map((src, index) => (
+            dataSource && dataSource.map((_src, index) => (
               <View key={index} className={`${prefixCls}-doc-item ${index === current ? `${prefixCls}-doc-item-active` : ''}`}></View>
             ))
           }

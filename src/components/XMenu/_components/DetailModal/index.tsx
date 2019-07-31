@@ -172,6 +172,7 @@ class Index extends Component<MenuProps> {
           <ScrollView
             scrollY
             className={`${prefixCls}-body`}
+            style={{height:'400rpx'}}
           >
             <View className={`${prefixCls}-body-name`}>
               {dataSource.name}

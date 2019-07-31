@@ -41,7 +41,7 @@ class Index extends Component {
       contentData: [
         {
           id: 1, title: '今日推荐', list: [
-            { id: 1, name: "蔷薇红梅气泡", count: 2, price: 50, requireType: [1, 2], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
+            { id: 1, name: "蔷薇红梅气泡", count: 2, price: 50, requireType: [1, 2, 3], description: '酸甜的草莓与清爽气泡的邂逅，配以淡淡的柠檬分子球。', src: 'http://img1.imgtn.bdimg.com/it/u=4229885950,3469296745&fm=11&gp=0.jpg', },
           ]
         },
         {

@@ -5,33 +5,40 @@
   background: #ffffff;
   display: flex;
   flex-direction: column;
+
   &-header {
     padding: 0 165rpx;
     flex: 0 0;
+
     image {
       width: 300rpx;
       height: 300rpx;
     }
   }
+
   &-body {
     display: flex;
     flex-direction: column;
     flex: 1;
+
     &-name {
       font-size: 30rpx;
       color: @font-color-2;
       padding-bottom: 27rpx;
       padding: 29rpx 0 50rpx 0;
     }
+
     &-description {
       padding-top: 10rpx;
       padding-bottom: 25rpx;
+
       &-title {
         font-size: 24rpx;
         color: @font-color-7;
         margin-bottom: 20rpx;
       }
-      &-content{
+
+      &-content {
         font-size: 22rpx;
         color: @font-color-9;
         text-overflow: ellipsis;
@@ -42,6 +49,7 @@
       }
     }
   }
+
   &-footer {
     border-top: 1rpx solid #e1e1e1;
     padding-top: 20rpx;
@@ -49,20 +57,24 @@
     flex: 0 0;
     flex-direction: column;
     background: #ffffff;
+
     &-calc {
       display: flex;
       flex-direction: row;
       align-items: center;
       margin-bottom: 28rpx;
-      &-content{
+
+      &-content {
         display: flex;
         flex-direction: column;
         flex: 1;
+
         &-price {
           flex: 1;
           font-size: 34rpx;
           color: @font-color-2;
         }
+
         &-description {
           flex: 1;
           font-size: 22rpx;
@@ -70,6 +82,7 @@
           color: @font-color-9;
         }
       }
+
       &-price {
         flex: 1;
         font-size: 34rpx;
