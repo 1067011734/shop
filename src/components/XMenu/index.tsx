@@ -53,8 +53,7 @@ class App extends Component<XMenuProps, XMenuState> {
    * @param key 切换的侧边栏的标识
   */
   handleToggle = (key) => {
-    this.setState({ siderActvieKey: key, contentActvieKey: key });
-    console.info(key)
+    this.setState({ contentActvieKey: key });
   }
 
   /**
@@ -141,23 +140,25 @@ class App extends Component<XMenuProps, XMenuState> {
 
     return (
       <View className={prefixCls}>
-        <ScrollView
-          style={scrollStyle}
-          scrollY
-          className={`${prefixCls}-sider`}
-        >
-          {
-            siderData && siderData.map((item, index) => (
-              <View
-                className={`${prefixCls}-sider-item ${index === siderActvieKey || index === 0 && siderActvieKey === -1 ? `${prefixCls}-sider-item-active` : ''}`}
-                onClick={() => { this.handleToggle(index) }}
-                key={item.id}
-              >
-                {item.value}
-              </View>
-            ))
-          }
-        </ScrollView>
+        <View className={`${prefixCls}-sider`}>
+          <ScrollView
+            style={scrollStyle}
+            scrollY
+            className={`${prefixCls}-sider-scroll`}
+          >
+            {
+              siderData && siderData.map((item, index) => (
+                <View
+                  className={`${prefixCls}-sider-item ${index === siderActvieKey || index === 0 && siderActvieKey === -1 ? `${prefixCls}-sider-item-active` : ''}`}
+                  onClick={() => { this.handleToggle(index) }}
+                  key={item.id}
+                >
+                  {item.value}
+                </View>
+              ))
+            }
+          </ScrollView>
+        </View>
         <ScrollView
           className={`${prefixCls}-content`}
           style={scrollStyle}

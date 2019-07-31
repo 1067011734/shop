@@ -42,7 +42,8 @@ class Index extends Component {
     const { list } = this.state
     return (
       <View className='page page-fetch'>
-        <View className="page-content">
+        取餐
+        {/* <View className="page-content">
           {
             list.map(item =>
               <Card
@@ -55,7 +56,7 @@ class Index extends Component {
         </View>
         <View className="page-footer">
           历史订单 >
-        </View>
+        </View> */}
       </View>
     )
   }
