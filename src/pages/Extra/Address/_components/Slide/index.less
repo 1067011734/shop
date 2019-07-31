@@ -7,6 +7,7 @@
   background: #ffffff;
   box-sizing: border-box;
   margin-top: 20rpx;
+
   &-content {
     height: 100%;
     display: flex;
@@ -19,22 +20,27 @@
     padding-top: 21rpx;
     padding-bottom: 15rpx;
     padding-left: 30rpx;
-    &-read{
+
+    &-read {
       display: flex;
       flex: 1;
       flex-direction: column;
+
       &-top {
         display: flex;
         flex-direction: row;
         align-items: center;
         padding-bottom: 15rpx;
+
         &-name {
+          min-width: 120px;
           font-weight: 400;
           font-size: 28rpx;
           line-height: 28rpx;
           color: @font-color-2;
           padding-right: 18rpx;
         }
+
         &-phone {
           font-weight: 400;
           font-size: 22rpx;
@@ -42,6 +48,7 @@
           color: @font-color-9;
         }
       }
+
       &-bottom {
         display: flex;
         flex-direction: row;
@@ -49,21 +56,30 @@
         font-size: 26rpx;
         line-height: 30rpx;
         font-weight: 400;
-        &-default-icon{
+
+        &-default-icon-wrap {
+          min-width: 120rpx;
+          padding-right: 18rpx;
+        }
+
+        &-default-icon {
           font-size: 22rpx;
           line-height: 22rpx;
           color: #ffffff;
           background-color: @color-primary;
           padding: 5rpx 10rpx;
           border-radius: 6rpx;
-          margin-right: 40rpx;
+          width: 52rpx;
+          text-align: center;
         }
       }
     }
-    &-edit{
+
+    &-edit {
       padding-right: 30rpx;
     }
   }
+
   &-delete {
     overflow: hidden;
     width: 130rpx;
@@ -76,10 +92,12 @@
     align-items: center;
     justify-content: center;
   }
-  .none{
+
+  .none {
     display: none
   }
 }
+
 .@{prefix-cls}-animate {
   transition: 0.2s;
 }

@@ -125,9 +125,13 @@ export default class Index extends Component<SlideProps> {
       [`${prefixCls}`]: true,
       [`${prefixCls}-animate`]: animate,
     })
+    const defaultIconWrapClassName = classnames({
+      [`${prefixCls}-content-read-bottom-default-icon-wrap`]: true,
+      [`none`]: !Boolean(dataSource.isDefaultAddress),
+    })
     const defaultIconClassName = classnames({
       [`${prefixCls}-content-read-bottom-default-icon`]: true,
-      [`none`]: !Boolean(dataSource.isDefaultAddress),
+      // [`none`]: !Boolean(dataSource.isDefaultAddress),
     })
     const style = `transform: translateX(${translateX * 2}rpx)`
 
@@ -150,10 +154,12 @@ export default class Index extends Component<SlideProps> {
               </View>
             </View>
             <View className={`${prefixCls}-content-read-bottom`}>
-              <View className={defaultIconClassName}>
-                默认
+              <View className={defaultIconWrapClassName}>
+                <View className={defaultIconClassName}>
+                  默认
             </View>
-              {dataSource.address}{dataSource.addressDetail}
+              </View>
+              <View>{dataSource.address}{dataSource.addressDetail}</View>
             </View>
           </View>
           <View className={`${prefixCls}-content-edit`} onClick={this.handleEdit}>
